@@ -1,0 +1,46 @@
+{
+  "case_study_metadata": {
+    "study_id": "CS001",
+    "title": "Commercial Transport Aircraft Wing Optimization",
+    "industry_partner": "Aerospace Design Consortium",
+    "duration_weeks": 12,
+    "team_size": 8,
+    "completion_date": "2024-08-01"
+  },
+  "problem_description": {
+    "aircraft_type": "narrow_body_commercial_transport",
+    "passenger_capacity": 180,
+    "design_range_km": 5500,
+    "cruise_mach": 0.82,
+    "design_challenges": [
+      "Fuel efficiency optimization",
+      "Structural weight minimization",
+      "Manufacturing cost reduction",
+      "Noise footprint compliance"
+    ]
+  },
+  "optimization_approach": {
+    "algorithms_used": [
+      "genetic_algorithm",
+      "bayesian_optimization"
+    ],
+    "fidelity_levels": 3,
+    "design_variables": 15,
+    "objectives": 3,
+    "constraints": 12,
+    "total_evaluations": 15000
+  },
+  "results_achieved": {
+    "fuel_efficiency_improvement": 12.4,
+    "weight_reduction_kg": 485,
+    "cost_savings_million_usd": 2.8,
+    "development_time_reduction_weeks": 18,
+    "computational_cost_reduction": 89.2
+  },
+  "industry_impact": {
+    "adoption_timeline": "2025-Q2",
+    "expected_fleet_savings_annually": "$45M",
+    "environmental_impact": "8% CO2 reduction per flight",
+    "competitive_advantage": "18-month time-to-market improvement"
+  }
+}

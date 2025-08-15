@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples & Tutorials - Adaptive Multi-Fidelity Aerospace Optimization</title>
+    <meta name="description" content="Comprehensive examples and step-by-step tutorials for aircraft and spacecraft optimization">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- SEO -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Examples &amp; Tutorials | Adaptive Multi-Fidelity Aerospace Optimization</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Examples &amp; Tutorials" />
+<meta name="author" content="Research Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Comprehensive examples and step-by-step tutorials for aircraft and spacecraft optimization" />
+<meta property="og:description" content="Comprehensive examples and step-by-step tutorials for aircraft and spacecraft optimization" />
+<link rel="canonical" href="http://localhost:4000/examples.html" />
+<meta property="og:url" content="http://localhost:4000/examples.html" />
+<meta property="og:site_name" content="Adaptive Multi-Fidelity Aerospace Optimization" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Examples &amp; Tutorials" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Research Team"},"description":"Comprehensive examples and step-by-step tutorials for aircraft and spacecraft optimization","headline":"Examples &amp; Tutorials","url":"http://localhost:4000/examples.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="/" class="site-title">Adaptive Multi-Fidelity Aerospace Optimization</a>
+                
+                <div class="nav-menu">
+                    <a href="/" class="nav-link ">Home</a>
+                    <a href="/about/" class="nav-link ">About</a>
+                    <a href="/methodology/" class="nav-link ">Methodology</a>
+                    <a href="/results/" class="nav-link ">Results</a>
+                    <a href="/technical/" class="nav-link ">Technical</a>
+                    <a href="/downloads/" class="nav-link ">Downloads</a>
+                </div>
+                
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-content">
+        <div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Examples & Tutorials</h1>
+        
+        <p class="page-description">Comprehensive examples and step-by-step tutorials for aircraft and spacecraft optimization</p>
+        
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <article class="content-wrapper">
+            <h2 id="quick-start-examples">Quick Start Examples</h2>
+
+<h3 id="basic-aircraft-optimization">Basic Aircraft Optimization</h3>
+
+<p>Get started with a simple aircraft wing optimization example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">src.models.aerospace_systems</span> <span class="kn">import</span> <span class="n">AircraftOptimizationSystem</span>
+<span class="kn">from</span> <span class="n">src.optimization.algorithms</span> <span class="kn">import</span> <span class="n">GeneticAlgorithm</span>
+
+<span class="c1"># Initialize system
+</span><span class="n">aircraft_system</span> <span class="o">=</span> <span class="nc">AircraftOptimizationSystem</span><span class="p">()</span>
+
+<span class="c1"># Define parameters
+</span><span class="n">parameter_bounds</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">wingspan</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">wing_area</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">150.0</span><span class="p">,</span> <span class="mf">350.0</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">aspect_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">sweep_angle</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">cruise_mach</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Create optimizer
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="nc">GeneticAlgorithm</span><span class="p">(</span><span class="n">parameter_bounds</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Define objective function
+</span><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">aircraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="sh">'</span><span class="s">commercial</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># Run optimization
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span> <span class="n">max_evaluations</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Best L/D ratio: </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">best_objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="basic-spacecraft-optimization">Basic Spacecraft Optimization</h3>
+
+<p>Simple spacecraft design optimization example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">src.models.aerospace_systems</span> <span class="kn">import</span> <span class="n">SpacecraftOptimizationSystem</span>
+<span class="kn">from</span> <span class="n">src.optimization.algorithms</span> <span class="kn">import</span> <span class="n">BayesianOptimization</span>
+
+<span class="c1"># Initialize spacecraft system
+</span><span class="n">spacecraft_system</span> <span class="o">=</span> <span class="nc">SpacecraftOptimizationSystem</span><span class="p">()</span>
+
+<span class="c1"># Define spacecraft parameters
+</span><span class="n">spacecraft_bounds</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">dry_mass</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">fuel_mass</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">40000</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">solar_panel_area</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">target_orbit_altitude</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Create Bayesian optimizer
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="nc">BayesianOptimization</span><span class="p">(</span><span class="n">spacecraft_bounds</span><span class="p">)</span>
+
+<span class="c1"># Define objective
+</span><span class="k">def</span> <span class="nf">spacecraft_objective</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">spacecraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="sh">'</span><span class="s">earth_observation</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># Run optimization
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span><span class="n">spacecraft_objective</span><span class="p">,</span> <span class="n">max_evaluations</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="comprehensive-tutorials">Comprehensive Tutorials</h2>
+
+<h3 id="tutorial-1-aircraft-wing-design-optimization">Tutorial 1: Aircraft Wing Design Optimization</h3>
+
+<h4 id="objective">Objective</h4>
+<p>Optimize a commercial aircraft wing for maximum aerodynamic efficiency while maintaining structural and operational constraints.</p>
+
+<h4 id="problem-setup">Problem Setup</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">src.models.aerospace_systems</span> <span class="kn">import</span> <span class="n">AircraftOptimizationSystem</span>
+<span class="kn">from</span> <span class="n">src.optimization.algorithms</span> <span class="kn">import</span> <span class="n">GeneticAlgorithm</span>
+<span class="kn">from</span> <span class="n">src.visualization.graph_generator</span> <span class="kn">import</span> <span class="n">ProfessionalGraphGenerator</span>
+
+<span class="c1"># Initialize systems
+</span><span class="n">aircraft_system</span> <span class="o">=</span> <span class="nc">AircraftOptimizationSystem</span><span class="p">()</span>
+<span class="n">graph_generator</span> <span class="o">=</span> <span class="nc">ProfessionalGraphGenerator</span><span class="p">(</span><span class="sh">"</span><span class="s">tutorial_results/</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Define comprehensive parameter bounds
+</span><span class="n">parameter_bounds</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">wingspan</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">35.0</span><span class="p">,</span> <span class="mf">65.0</span><span class="p">),</span>          <span class="c1"># Wing span (m)
+</span>    <span class="sh">'</span><span class="s">wing_area</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">200.0</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">),</span>       <span class="c1"># Wing planform area (m²)
+</span>    <span class="sh">'</span><span class="s">aspect_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">),</span>       <span class="c1"># Wing aspect ratio
+</span>    <span class="sh">'</span><span class="s">sweep_angle</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">),</span>       <span class="c1"># Wing sweep angle (degrees)
+</span>    <span class="sh">'</span><span class="s">taper_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span>         <span class="c1"># Wing taper ratio
+</span>    <span class="sh">'</span><span class="s">thickness_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">),</span>   <span class="c1"># Airfoil thickness ratio
+</span>    <span class="sh">'</span><span class="s">cruise_altitude</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">9000</span><span class="p">,</span> <span class="mi">12000</span><span class="p">),</span>   <span class="c1"># Cruise altitude (m)
+</span>    <span class="sh">'</span><span class="s">cruise_mach</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">),</span>       <span class="c1"># Cruise Mach number
+</span>    <span class="sh">'</span><span class="s">weight</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="mi">90000</span><span class="p">)</span>           <span class="c1"># Aircraft weight (kg)
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="multi-objective-optimization">Multi-Objective Optimization</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">multi_objective_aircraft</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Multi-objective function optimizing for:
+    1. Aerodynamic efficiency (L/D ratio)
+    2. Fuel efficiency
+    3. Structural weight
+    </span><span class="sh">"""</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">aircraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="sh">'</span><span class="s">commercial</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">sim_result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">]</span>
+    
+    <span class="c1"># Calculate additional objectives
+</span>    <span class="n">structural_weight_penalty</span> <span class="o">=</span> <span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">wingspan</span><span class="sh">'</span><span class="p">]</span> <span class="o">*</span> <span class="n">parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">wing_area</span><span class="sh">'</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="o">-</span><span class="n">sim_result</span><span class="p">.</span><span class="n">objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">],</span>  <span class="c1"># Maximize
+</span>        <span class="sh">'</span><span class="s">fuel_efficiency</span><span class="sh">'</span><span class="p">:</span> <span class="n">sim_result</span><span class="p">.</span><span class="n">objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">fuel_efficiency</span><span class="sh">'</span><span class="p">],</span>         <span class="c1"># Minimize
+</span>        <span class="sh">'</span><span class="s">structural_weight</span><span class="sh">'</span><span class="p">:</span> <span class="n">structural_weight_penalty</span>                       <span class="c1"># Minimize
+</span>    <span class="p">}</span>
+
+<span class="c1"># Use NSGA-II for multi-objective optimization
+</span><span class="kn">from</span> <span class="n">src.optimization.algorithms</span> <span class="kn">import</span> <span class="n">NSGA2</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="nc">NSGA2</span><span class="p">(</span>
+    <span class="n">parameter_bounds</span><span class="o">=</span><span class="n">parameter_bounds</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">crossover_rate</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="c1"># Run multi-objective optimization
+</span><span class="n">pareto_result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span>
+    <span class="n">objective_function</span><span class="o">=</span><span class="n">multi_objective_aircraft</span><span class="p">,</span>
+    <span class="n">max_evaluations</span><span class="o">=</span><span class="mi">1000</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="results-analysis">Results Analysis</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analyze Pareto front
+</span><span class="n">pareto_solutions</span> <span class="o">=</span> <span class="n">pareto_result</span><span class="p">.</span><span class="n">pareto_solutions</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Found </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">pareto_solutions</span><span class="p">)</span><span class="si">}</span><span class="s"> Pareto optimal solutions</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Find solutions with specific trade-offs
+</span><span class="n">best_aerodynamic</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">pareto_solutions</span><span class="p">,</span> 
+                      <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">])</span>
+<span class="n">best_fuel_efficient</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">pareto_solutions</span><span class="p">,</span>
+                         <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">fuel_efficiency</span><span class="sh">'</span><span class="p">])</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Best aerodynamic solution:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">L/D ratio: </span><span class="si">{</span><span class="o">-</span><span class="n">best_aerodynamic</span><span class="p">[</span><span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fuel efficiency: </span><span class="si">{</span><span class="n">best_aerodynamic</span><span class="p">[</span><span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">fuel_efficiency</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Best fuel efficient solution:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">L/D ratio: </span><span class="si">{</span><span class="o">-</span><span class="n">best_fuel_efficient</span><span class="p">[</span><span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fuel efficiency: </span><span class="si">{</span><span class="n">best_fuel_efficient</span><span class="p">[</span><span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">fuel_efficiency</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Create visualizations
+</span><span class="n">pareto_plot</span> <span class="o">=</span> <span class="n">graph_generator</span><span class="p">.</span><span class="nf">create_pareto_front_plot</span><span class="p">(</span>
+    <span class="n">pareto_solutions</span><span class="p">,</span> <span class="sh">"</span><span class="s">tutorial_aircraft_pareto</span><span class="sh">"</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Pareto front plot saved: </span><span class="si">{</span><span class="n">pareto_plot</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="tutorial-2-robust-spacecraft-design-under-uncertainty">Tutorial 2: Robust Spacecraft Design Under Uncertainty</h3>
+
+<h4 id="objective-1">Objective</h4>
+<p>Design a robust Earth observation satellite that performs well under manufacturing tolerances and environmental uncertainties.</p>
+
+<h4 id="uncertainty-definition">Uncertainty Definition</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">src.optimization.robust_optimization</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">UncertaintyQuantification</span><span class="p">,</span> 
+    <span class="n">UncertaintyDistribution</span><span class="p">,</span>
+    <span class="n">RobustOptimizer</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize uncertainty quantification
+</span><span class="n">uq</span> <span class="o">=</span> <span class="nc">UncertaintyQuantification</span><span class="p">()</span>
+
+<span class="c1"># Define parameter uncertainties (manufacturing tolerances)
+</span><span class="n">uq</span><span class="p">.</span><span class="nf">add_parameter_uncertainty</span><span class="p">(</span><span class="sh">'</span><span class="s">dry_mass</span><span class="sh">'</span><span class="p">,</span> <span class="nc">UncertaintyDistribution</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">normal</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sh">'</span><span class="s">std</span><span class="sh">'</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">},</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">300.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">)</span>
+<span class="p">))</span>
+<span class="n">uq</span><span class="p">.</span><span class="nf">add_parameter_uncertainty</span><span class="p">(</span><span class="sh">'</span><span class="s">fuel_mass</span><span class="sh">'</span><span class="p">,</span> <span class="nc">UncertaintyDistribution</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">normal</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sh">'</span><span class="s">std</span><span class="sh">'</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">},</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">)</span>
+<span class="p">))</span>
+<span class="n">uq</span><span class="p">.</span><span class="nf">add_parameter_uncertainty</span><span class="p">(</span><span class="sh">'</span><span class="s">solar_panel_area</span><span class="sh">'</span><span class="p">,</span> <span class="nc">UncertaintyDistribution</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">normal</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sh">'</span><span class="s">std</span><span class="sh">'</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)</span>
+<span class="p">))</span>
+
+<span class="c1"># Define environmental uncertainties
+</span><span class="n">uq</span><span class="p">.</span><span class="nf">add_environmental_uncertainty</span><span class="p">(</span><span class="sh">'</span><span class="s">solar_flux_variation</span><span class="sh">'</span><span class="p">,</span> <span class="nc">UncertaintyDistribution</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">uniform</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">low</span><span class="sh">'</span><span class="p">:</span> <span class="o">-</span><span class="mf">50.0</span><span class="p">,</span> <span class="sh">'</span><span class="s">high</span><span class="sh">'</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">}</span>  <span class="c1"># W/m² variation
+</span><span class="p">))</span>
+<span class="n">uq</span><span class="p">.</span><span class="nf">add_environmental_uncertainty</span><span class="p">(</span><span class="sh">'</span><span class="s">atmospheric_density_variation</span><span class="sh">'</span><span class="p">,</span> <span class="nc">UncertaintyDistribution</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">lognormal</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sh">'</span><span class="s">sigma</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}</span>
+<span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Uncertainty sources defined ✓</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="robust-optimization-setup">Robust Optimization Setup</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Initialize spacecraft system
+</span><span class="n">spacecraft_system</span> <span class="o">=</span> <span class="nc">SpacecraftOptimizationSystem</span><span class="p">()</span>
+
+<span class="c1"># Define spacecraft design bounds
+</span><span class="n">spacecraft_bounds</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">dry_mass</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">),</span>           <span class="c1"># kg
+</span>    <span class="sh">'</span><span class="s">fuel_mass</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">),</span>         <span class="c1"># kg
+</span>    <span class="sh">'</span><span class="s">specific_impulse</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">280</span><span class="p">,</span> <span class="mi">350</span><span class="p">),</span>     <span class="c1"># seconds
+</span>    <span class="sh">'</span><span class="s">thrust</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span>             <span class="c1"># Newtons
+</span>    <span class="sh">'</span><span class="s">solar_panel_area</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">120.0</span><span class="p">),</span>  <span class="c1"># m²
+</span>    <span class="sh">'</span><span class="s">thermal_mass</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">2500</span><span class="p">),</span>        <span class="c1"># kg
+</span>    <span class="sh">'</span><span class="s">target_orbit_altitude</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span><span class="p">),</span> <span class="c1"># km
+</span>    <span class="sh">'</span><span class="s">mission_duration</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1095</span><span class="p">,</span> <span class="mi">2190</span><span class="p">)</span>    <span class="c1"># days (3-6 years)
+</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">robust_spacecraft_objective</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Robust objective function for spacecraft optimization.
+    Optimizes for mission success probability under uncertainty.
+    </span><span class="sh">"""</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">spacecraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="sh">'</span><span class="s">earth_observation</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">sim_result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="sh">'</span><span class="s">mission_success</span><span class="sh">'</span><span class="p">:</span> <span class="o">-</span><span class="n">sim_result</span><span class="p">.</span><span class="n">objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">mission_success_probability</span><span class="sh">'</span><span class="p">],</span>
+        <span class="sh">'</span><span class="s">total_mass</span><span class="sh">'</span><span class="p">:</span> <span class="n">parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">dry_mass</span><span class="sh">'</span><span class="p">]</span> <span class="o">+</span> <span class="n">parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">fuel_mass</span><span class="sh">'</span><span class="p">],</span>
+        <span class="sh">'</span><span class="s">power_margin</span><span class="sh">'</span><span class="p">:</span> <span class="o">-</span><span class="n">sim_result</span><span class="p">.</span><span class="n">objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">power_efficiency</span><span class="sh">'</span><span class="p">]</span>
+    <span class="p">}</span>
+
+<span class="c1"># Create robust optimizer
+</span><span class="n">robust_optimizer</span> <span class="o">=</span> <span class="nc">RobustOptimizer</span><span class="p">(</span><span class="n">uq</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="robust-optimization-execution">Robust Optimization Execution</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Run robust optimization with different robustness measures
+</span><span class="n">robustness_measures</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">mean_std</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">worst_case</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">cvar</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">robust_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">robustness_measures</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Running robust optimization with </span><span class="si">{</span><span class="n">measure</span><span class="si">}</span><span class="s"> measure...</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">robust_optimizer</span><span class="p">.</span><span class="nf">robust_optimization</span><span class="p">(</span>
+        <span class="n">objective_function</span><span class="o">=</span><span class="n">robust_spacecraft_objective</span><span class="p">,</span>
+        <span class="n">parameter_bounds</span><span class="o">=</span><span class="n">spacecraft_bounds</span><span class="p">,</span>
+        <span class="n">robustness_measure</span><span class="o">=</span><span class="n">measure</span><span class="p">,</span>
+        <span class="n">n_mc_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">optimization_algorithm</span><span class="o">=</span><span class="sh">'</span><span class="s">genetic_algorithm</span><span class="sh">'</span>
+    <span class="p">)</span>
+    
+    <span class="n">robust_results</span><span class="p">[</span><span class="n">measure</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+    
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Robust objective (</span><span class="si">{</span><span class="n">measure</span><span class="si">}</span><span class="s">): </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">robust_objective</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mean mission success: </span><span class="si">{</span><span class="o">-</span><span class="n">result</span><span class="p">.</span><span class="n">mean_objective</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Objective std dev: </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">objective_std</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="uncertainty-analysis">Uncertainty Analysis</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Detailed uncertainty analysis for best solution
+</span><span class="n">best_solution</span> <span class="o">=</span> <span class="n">robust_results</span><span class="p">[</span><span class="sh">'</span><span class="s">mean_std</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># Monte Carlo analysis
+</span><span class="n">mc_samples</span> <span class="o">=</span> <span class="n">uq</span><span class="p">.</span><span class="nf">sample_uncertainties</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">mc_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">mc_samples</span><span class="p">:</span>
+    <span class="c1"># Apply uncertainties to best parameters
+</span>    <span class="n">perturbed_params</span> <span class="o">=</span> <span class="n">best_solution</span><span class="p">.</span><span class="n">best_parameters</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+    
+    <span class="c1"># Add parameter uncertainties
+</span>    <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">uncertainty</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">[</span><span class="sh">'</span><span class="s">parameters</span><span class="sh">'</span><span class="p">].</span><span class="nf">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">perturbed_params</span><span class="p">:</span>
+            <span class="n">perturbed_params</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">+=</span> <span class="n">uncertainty</span>
+    
+    <span class="c1"># Evaluate with perturbed parameters
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">spacecraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">perturbed_params</span><span class="p">,</span> <span class="sh">'</span><span class="s">earth_observation</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">mc_results</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">].</span><span class="n">objectives</span><span class="p">)</span>
+
+<span class="c1"># Statistical analysis
+</span><span class="n">mission_success_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="sh">'</span><span class="s">mission_success_probability</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">mc_results</span><span class="p">]</span>
+<span class="n">power_efficiency_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="sh">'</span><span class="s">power_efficiency</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">mc_results</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">=== UNCERTAINTY ANALYSIS RESULTS ===</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mission Success Probability:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Mean: </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">mission_success_values</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Std:  </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">std</span><span class="p">(</span><span class="n">mission_success_values</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  95% CI: [</span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">mission_success_values</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">, </span><span class="sh">"</span>
+      <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">mission_success_values</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">]</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Power Efficiency:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Mean: </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">power_efficiency_values</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Std:  </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">std</span><span class="p">(</span><span class="n">power_efficiency_values</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Create uncertainty visualization
+</span><span class="n">uncertainty_plot</span> <span class="o">=</span> <span class="n">graph_generator</span><span class="p">.</span><span class="nf">create_uncertainty_propagation_plot</span><span class="p">(</span>
+    <span class="n">mc_results</span><span class="p">,</span> <span class="sh">"</span><span class="s">tutorial_spacecraft_uncertainty</span><span class="sh">"</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Uncertainty analysis plot saved: </span><span class="si">{</span><span class="n">uncertainty_plot</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="tutorial-3-advanced-multi-fidelity-strategy-comparison">Tutorial 3: Advanced Multi-Fidelity Strategy Comparison</h3>
+
+<h4 id="objective-2">Objective</h4>
+<p>Compare different fidelity switching strategies to understand their impact on optimization performance and computational cost.</p>
+
+<h4 id="strategy-setup">Strategy Setup</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">src.simulation.adaptive_fidelity</span> <span class="kn">import</span> <span class="n">FidelitySwitchingStrategy</span>
+
+<span class="c1"># Define different fidelity strategies
+</span><span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FidelitySwitchingStrategy</span><span class="p">.</span><span class="n">CONSERVATIVE</span><span class="p">,</span>
+    <span class="n">FidelitySwitchingStrategy</span><span class="p">.</span><span class="n">AGGRESSIVE</span><span class="p">,</span> 
+    <span class="n">FidelitySwitchingStrategy</span><span class="p">.</span><span class="n">BALANCED</span><span class="p">,</span>
+    <span class="n">FidelitySwitchingStrategy</span><span class="p">.</span><span class="n">ADAPTIVE</span>
+<span class="p">]</span>
+
+<span class="n">strategy_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Run optimization with each strategy
+</span><span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">strategies</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Testing </span><span class="si">{</span><span class="n">strategy</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> fidelity strategy...</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize system with specific strategy
+</span>    <span class="n">aircraft_system</span> <span class="o">=</span> <span class="nc">AircraftOptimizationSystem</span><span class="p">(</span><span class="n">fidelity_strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">)</span>
+    
+    <span class="c1"># Create optimizer
+</span>    <span class="n">optimizer</span> <span class="o">=</span> <span class="nc">GeneticAlgorithm</span><span class="p">(</span><span class="n">parameter_bounds</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    
+    <span class="c1"># Run optimization
+</span>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span> <span class="n">max_evaluations</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+    
+    <span class="c1"># Get fidelity statistics
+</span>    <span class="n">fidelity_stats</span> <span class="o">=</span> <span class="n">aircraft_system</span><span class="p">.</span><span class="nf">get_optimization_statistics</span><span class="p">()</span>
+    
+    <span class="n">strategy_results</span><span class="p">[</span><span class="n">strategy</span><span class="p">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">'</span><span class="s">optimization_result</span><span class="sh">'</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+        <span class="sh">'</span><span class="s">total_time</span><span class="sh">'</span><span class="p">:</span> <span class="n">total_time</span><span class="p">,</span>
+        <span class="sh">'</span><span class="s">fidelity_stats</span><span class="sh">'</span><span class="p">:</span> <span class="n">fidelity_stats</span>
+    <span class="p">}</span>
+    
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Best L/D ratio: </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">best_objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Total time: </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s"> seconds</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Fidelity usage: </span><span class="si">{</span><span class="n">fidelity_stats</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_counts</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="strategy-comparison-analysis">Strategy Comparison Analysis</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create comparison visualization
+</span><span class="n">comparison_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">strategy_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">strategy_results</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+    <span class="n">comparison_data</span><span class="p">[</span><span class="n">strategy_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">'</span><span class="s">objectives</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">optimization_result</span><span class="sh">'</span><span class="p">].</span><span class="n">best_objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">],</span>
+                <span class="sh">'</span><span class="s">std</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.2</span>  <span class="c1"># Placeholder - would come from multiple runs
+</span>            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="sh">'</span><span class="s">computational_cost</span><span class="sh">'</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">total_time</span><span class="sh">'</span><span class="p">],</span>
+        <span class="sh">'</span><span class="s">fidelity_distribution</span><span class="sh">'</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_stats</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">fidelity_counts</span><span class="sh">'</span><span class="p">]</span>
+    <span class="p">}</span>
+
+<span class="c1"># Generate comparison plots
+</span><span class="n">comparison_plot</span> <span class="o">=</span> <span class="n">graph_generator</span><span class="p">.</span><span class="nf">create_performance_comparison_plot</span><span class="p">(</span>
+    <span class="n">comparison_data</span><span class="p">,</span> <span class="sh">"</span><span class="s">tutorial_strategy_comparison</span><span class="sh">"</span>
+<span class="p">)</span>
+
+<span class="c1"># Print detailed analysis
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">=== FIDELITY STRATEGY COMPARISON ===</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="sh">'</span><span class="s">Strategy</span><span class="sh">'</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">12</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="sh">'</span><span class="s">L/D Ratio</span><span class="sh">'</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">10</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="sh">'</span><span class="s">Time (s)</span><span class="sh">'</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">10</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="sh">'</span><span class="s">Low %</span><span class="sh">'</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">8</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="sh">'</span><span class="s">Med %</span><span class="sh">'</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">8</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="sh">'</span><span class="s">High %</span><span class="sh">'</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">8</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">strategy_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">strategy_results</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">optimization_result</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_stats</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">total_evals</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_counts</span><span class="sh">'</span><span class="p">].</span><span class="nf">values</span><span class="p">())</span>
+    
+    <span class="n">low_pct</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_counts</span><span class="sh">'</span><span class="p">].</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">low</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_evals</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">med_pct</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_counts</span><span class="sh">'</span><span class="p">].</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">medium</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_evals</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">high_pct</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="sh">'</span><span class="s">fidelity_counts</span><span class="sh">'</span><span class="p">].</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">high</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_evals</span> <span class="o">*</span> <span class="mi">100</span>
+    
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">strategy_name</span><span class="si">:</span><span class="o">&lt;</span><span class="mi">12</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">best_objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="o">&lt;</span><span class="mf">10.2</span><span class="n">f</span><span class="si">}</span><span class="s"> </span><span class="sh">"</span>
+          <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">total_time</span><span class="sh">'</span><span class="p">]</span><span class="si">:</span><span class="o">&lt;</span><span class="mf">10.1</span><span class="n">f</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">low_pct</span><span class="si">:</span><span class="o">&lt;</span><span class="mf">8.1</span><span class="n">f</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">med_pct</span><span class="si">:</span><span class="o">&lt;</span><span class="mf">8.1</span><span class="n">f</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">high_pct</span><span class="si">:</span><span class="o">&lt;</span><span class="mf">8.1</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="interactive-examples">Interactive Examples</h2>
+
+<h3 id="jupyter-notebook-tutorials">Jupyter Notebook Tutorials</h3>
+
+<p>We provide comprehensive Jupyter notebooks for interactive learning:</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">01_Quick_Start.ipynb</code></strong> - Basic framework usage and simple examples</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">02_Aircraft_Optimization.ipynb</code></strong> - Complete aircraft design optimization</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">03_Spacecraft_Design.ipynb</code></strong> - Spacecraft mission planning and optimization</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">04_Multi_Objective.ipynb</code></strong> - Multi-objective optimization and Pareto analysis</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">05_Robust_Design.ipynb</code></strong> - Uncertainty quantification and robust optimization</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">06_Advanced_Features.ipynb</code></strong> - Custom algorithms and advanced techniques</li>
+</ol>
+
+<h3 id="running-the-notebooks">Running the Notebooks</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install Jupyter if not already installed</span>
+pip <span class="nb">install </span>jupyter notebook
+
+<span class="c"># Navigate to examples directory</span>
+<span class="nb">cd </span>examples/notebooks/
+
+<span class="c"># Start Jupyter notebook server</span>
+jupyter notebook
+
+<span class="c"># Open desired notebook in browser</span>
+</code></pre></div></div>
+
+<h2 id="example-gallery">Example Gallery</h2>
+
+<h3 id="aircraft-configurations">Aircraft Configurations</h3>
+
+<p><strong>Commercial Airliner Optimization</strong></p>
+<ul>
+  <li>Variables: 9 design parameters</li>
+  <li>Objectives: L/D ratio, fuel efficiency, range</li>
+  <li>Results: 28.4 L/D ratio, 15% fuel savings</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="examples/aircraft_commercial.py">View Code</a></td>
+          <td><a href="results/aircraft_commercial/">Results</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><strong>Regional Aircraft Design</strong></p>
+<ul>
+  <li>Variables: 7 design parameters</li>
+  <li>Objectives: Takeoff distance, fuel efficiency</li>
+  <li>Results: 1200m takeoff, 18% efficiency gain</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="examples/aircraft_regional.py">View Code</a></td>
+          <td><a href="results/aircraft_regional/">Results</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><strong>Business Jet Optimization</strong></p>
+<ul>
+  <li>Variables: 8 design parameters</li>
+  <li>Objectives: Speed, range, comfort</li>
+  <li>Results: Mach 0.92, 6800km range</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="examples/aircraft_business.py">View Code</a></td>
+          <td><a href="results/aircraft_business/">Results</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="spacecraft-missions">Spacecraft Missions</h3>
+
+<p><strong>Earth Observation Satellite</strong></p>
+<ul>
+  <li>Variables: 8 design parameters</li>
+  <li>Objectives: Mission success, mass efficiency</li>
+  <li>Results: 94.2% success probability, 2850kg mass</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="examples/spacecraft_earth_obs.py">View Code</a></td>
+          <td><a href="results/spacecraft_earth_obs/">Results</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><strong>Communication Satellite</strong></p>
+<ul>
+  <li>Variables: 10 design parameters</li>
+  <li>Objectives: Coverage, power efficiency, lifetime</li>
+  <li>Results: 15-year lifetime, 99.5% coverage</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="examples/spacecraft_communication.py">View Code</a></td>
+          <td><a href="results/spacecraft_communication/">Results</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><strong>Interplanetary Probe</strong></p>
+<ul>
+  <li>Variables: 12 design parameters</li>
+  <li>Objectives: Delta-v capability, instrument mass</li>
+  <li>Results: 12.8 km/s delta-v, 450kg instruments</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="examples/spacecraft_interplanetary.py">View Code</a></td>
+          <td><a href="results/spacecraft_interplanetary/">Results</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="best-practices-examples">Best Practices Examples</h2>
+
+<h3 id="optimization-setup">Optimization Setup</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example of well-structured optimization setup
+</span><span class="k">class</span> <span class="nc">OptimizationPipeline</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">system_type</span><span class="o">=</span><span class="sh">'</span><span class="s">aircraft</span><span class="sh">'</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_initialize_system</span><span class="p">(</span><span class="n">system_type</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">data_manager</span> <span class="o">=</span> <span class="nc">DataManager</span><span class="p">(</span><span class="sh">"</span><span class="s">optimization_results</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">visualizer</span> <span class="o">=</span> <span class="nc">ProfessionalGraphGenerator</span><span class="p">(</span><span class="sh">"</span><span class="s">visualizations</span><span class="sh">"</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">run_optimization</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="c1"># Validate configuration
+</span>        <span class="n">self</span><span class="p">.</span><span class="nf">_validate_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        
+        <span class="c1"># Setup optimizer
+</span>        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_create_optimizer</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        
+        <span class="c1"># Define objective with error handling
+</span>        <span class="n">objective_func</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_create_objective_function</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        
+        <span class="c1"># Run optimization with logging
+</span>        <span class="n">result</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_run_with_monitoring</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">objective_func</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        
+        <span class="c1"># Save and analyze results
+</span>        <span class="n">self</span><span class="p">.</span><span class="nf">_save_results</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">_generate_visualizations</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<h3 id="error-handling">Error Handling</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">robust_objective_function</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Example of robust objective function with comprehensive error handling
+    </span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Validate parameters
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="nf">validate_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">parameter_bounds</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">Parameters outside valid bounds</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="c1"># Evaluate design with timeout
+</span>        <span class="k">with</span> <span class="nf">timeout_context</span><span class="p">(</span><span class="mi">120</span><span class="p">):</span>  <span class="c1"># 2-minute timeout
+</span>            <span class="n">result</span> <span class="o">=</span> <span class="n">aircraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        
+        <span class="c1"># Check for valid results
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="ow">or</span> <span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">"</span><span class="s">Invalid simulation result</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="n">objectives</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">].</span><span class="n">objectives</span>
+        
+        <span class="c1"># Validate objectives
+</span>        <span class="k">if</span> <span class="nf">any</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">isnan</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">objectives</span><span class="p">.</span><span class="nf">values</span><span class="p">()))):</span>
+            <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">"</span><span class="s">NaN values in objectives</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">objectives</span>
+        
+    <span class="k">except</span> <span class="nb">TimeoutError</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Timeout for parameters: </span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">}</span>  <span class="c1"># Penalty value
+</span>        
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error in objective function: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">}</span>  <span class="c1"># Penalty value
+</span></code></pre></div></div>
+
+<h2 id="performance-optimization-examples">Performance Optimization Examples</h2>
+
+<h3 id="parallel-processing">Parallel Processing</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span class="kn">import</span> <span class="n">functools</span>
+
+<span class="k">def</span> <span class="nf">parallel_optimization_example</span><span class="p">():</span>
+    <span class="sh">"""</span><span class="s">Example of parallel optimization execution</span><span class="sh">"""</span>
+    
+    <span class="c1"># Configure for parallel processing
+</span>    <span class="n">n_cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="p">.</span><span class="nf">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+    
+    <span class="c1"># Create population-based optimizer
+</span>    <span class="n">optimizer</span> <span class="o">=</span> <span class="nc">GeneticAlgorithm</span><span class="p">(</span>
+        <span class="n">parameter_bounds</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="o">=</span><span class="n">n_cores</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># 4 individuals per core
+</span>        <span class="n">parallel_evaluations</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">n_workers</span><span class="o">=</span><span class="n">n_cores</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Define thread-safe objective function
+</span>    <span class="k">def</span> <span class="nf">thread_safe_objective</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="c1"># Create local system instance for thread safety
+</span>        <span class="n">local_system</span> <span class="o">=</span> <span class="nc">AircraftOptimizationSystem</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">local_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+    
+    <span class="c1"># Run parallel optimization
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span>
+        <span class="n">thread_safe_objective</span><span class="p">,</span>
+        <span class="n">max_evaluations</span><span class="o">=</span><span class="mi">400</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<h3 id="memory-optimization">Memory Optimization</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">memory_efficient_optimization</span><span class="p">():</span>
+    <span class="sh">"""</span><span class="s">Example of memory-efficient optimization for large problems</span><span class="sh">"""</span>
+    
+    <span class="c1"># Configure system for memory efficiency
+</span>    <span class="n">aircraft_system</span> <span class="o">=</span> <span class="nc">AircraftOptimizationSystem</span><span class="p">()</span>
+    <span class="n">aircraft_system</span><span class="p">.</span><span class="nf">configure</span><span class="p">({</span>
+        <span class="sh">'</span><span class="s">cache_size</span><span class="sh">'</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>           <span class="c1"># Limit evaluation cache
+</span>        <span class="sh">'</span><span class="s">history_compression</span><span class="sh">'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="c1"># Compress optimization history
+</span>        <span class="sh">'</span><span class="s">lazy_loading</span><span class="sh">'</span><span class="p">:</span> <span class="bp">True</span>        <span class="c1"># Load data on demand
+</span>    <span class="p">})</span>
+    
+    <span class="c1"># Use streaming data processing
+</span>    <span class="k">def</span> <span class="nf">streaming_objective</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">aircraft_system</span><span class="p">.</span><span class="nf">evaluate_design</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="c1"># Process and return only essential data
+</span>        <span class="k">return</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">simulation_result</span><span class="sh">'</span><span class="p">].</span><span class="n">objectives</span><span class="p">[</span><span class="sh">'</span><span class="s">lift_to_drag_ratio</span><span class="sh">'</span><span class="p">]</span>
+        <span class="p">}</span>
+    
+    <span class="c1"># Configure optimizer for memory efficiency
+</span>    <span class="n">optimizer</span> <span class="o">=</span> <span class="nc">GeneticAlgorithm</span><span class="p">(</span>
+        <span class="n">parameter_bounds</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>          <span class="c1"># Smaller population
+</span>        <span class="n">archive_solutions</span><span class="o">=</span><span class="bp">False</span>      <span class="c1"># Don't store all solutions
+</span>    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">optimizer</span><span class="p">.</span><span class="nf">optimize</span><span class="p">(</span><span class="n">streaming_objective</span><span class="p">,</span> <span class="n">max_evaluations</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><em>All examples are tested and validated. Complete source code is available in the <code class="language-plaintext highlighter-rouge">/examples</code> directory. For questions or support, please visit our <a href="https://github.com/aerospace-optimization/amf-sbo">GitHub repository</a>.</em></p>
+
+        </article>
+    </div>
+</div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adaptive Multi-Fidelity Aerospace Optimization</h3>
+                    <p>Advanced simulation-based optimization for aerospace systems using adaptive multi-fidelity models.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/methodology/">Methodology</a></li>
+                        <li><a href="/results/">Results</a></li>
+                        <li><a href="/technical/">Technical Details</a></li>
+                        <li><a href="/downloads/">Downloads</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/aerospace-optimization" target="_blank">GitHub Repository</a></li>
+                        <li><a href="/downloads/">Code & Data</a></li>
+                        <li><a href="/technical/">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Adaptive Multi-Fidelity Aerospace Optimization. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.site-nav');
+            nav.classList.toggle('mobile-open');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('.site-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('mobile-open');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

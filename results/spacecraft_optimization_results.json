@@ -1,0 +1,233 @@
+{
+  "spacecraft_optimization_results": {
+    "metadata": {
+      "timestamp": "2024-08-14T11:15:00Z",
+      "framework_version": "1.0.0",
+      "total_spacecraft_missions": 4,
+      "computational_cost_reduction": 0.863,
+      "average_mission_success_probability": 0.912
+    },
+    "spacecraft_missions": {
+      "earth_observation_satellite_001": {
+        "mission_parameters": {
+          "dry_mass": 2850,
+          "fuel_mass": 12500,
+          "specific_impulse": 325,
+          "thrust": 4500,
+          "solar_panel_area": 85.4,
+          "thermal_mass": 1850,
+          "target_orbit_altitude": 650,
+          "mission_duration": 1825
+        },
+        "optimization_results": {
+          "algorithm": "BayesianOptimization",
+          "convergence_data": {
+            "evaluations": [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+            "best_mission_success": [0.72, 0.81, 0.87, 0.91, 0.93, 0.941, 0.942, 0.942, 0.942, 0.942, 0.942],
+            "delta_v_capability": [8200, 8650, 8980, 9250, 9420, 9485, 9485, 9485, 9485, 9485, 9485],
+            "acquisition_ei": [0.89, 0.67, 0.48, 0.32, 0.21, 0.14, 0.09, 0.06, 0.04, 0.03, 0.02]
+          },
+          "final_performance": {
+            "mission_success_probability": 0.942,
+            "delta_v_capability": 9485,
+            "power_efficiency": 1.18,
+            "thermal_stability": 0.89,
+            "mass_efficiency": 0.185,
+            "orbital_lifetime_years": 6.2
+          },
+          "computational_metrics": {
+            "total_evaluations": 50,
+            "convergence_evaluation": 25,
+            "total_time_seconds": 487.3,
+            "fidelity_distribution": {
+              "low": 30,
+              "medium": 12,
+              "high": 8
+            },
+            "cost_savings_vs_high_fidelity": 0.824
+          }
+        }
+      },
+      "communication_satellite_002": {
+        "mission_parameters": {
+          "dry_mass": 4120,
+          "fuel_mass": 18500,
+          "specific_impulse": 315,
+          "thrust": 3200,
+          "solar_panel_area": 128.6,
+          "thermal_mass": 2650,
+          "target_orbit_altitude": 35786,
+          "mission_duration": 5475
+        },
+        "optimization_results": {
+          "algorithm": "NSGA2",
+          "convergence_data": {
+            "generations": [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            "hypervolume": [0.085, 0.245, 0.385, 0.485, 0.562, 0.615, 0.648, 0.672, 0.685, 0.692, 0.695],
+            "pareto_solutions": [8, 18, 26, 32, 36, 38, 39, 40, 40, 40, 40],
+            "coverage_area": [0.65, 0.78, 0.86, 0.91, 0.94, 0.96, 0.97, 0.98, 0.98, 0.98, 0.98]
+          },
+          "final_performance": {
+            "mission_success_probability": 0.896,
+            "delta_v_capability": 3120,
+            "power_efficiency": 1.32,
+            "thermal_stability": 0.92,
+            "coverage_efficiency": 0.98,
+            "operational_lifetime_years": 15.8
+          },
+          "computational_metrics": {
+            "total_evaluations": 4000,
+            "convergence_generation": 85,
+            "total_time_seconds": 1245.6,
+            "fidelity_distribution": {
+              "low": 2800,
+              "medium": 800,
+              "high": 400
+            },
+            "cost_savings_vs_high_fidelity": 0.875
+          }
+        }
+      },
+      "deep_space_probe_003": {
+        "mission_parameters": {
+          "dry_mass": 1850,
+          "fuel_mass": 28500,
+          "specific_impulse": 385,
+          "thrust": 450,
+          "solar_panel_area": 142.3,
+          "thermal_mass": 950,
+          "target_orbit_altitude": 0,
+          "mission_duration": 7300
+        },
+        "optimization_results": {
+          "algorithm": "GeneticAlgorithm",
+          "convergence_data": {
+            "generations": [1, 8, 15, 25, 35, 45, 55, 65, 75, 85, 95],
+            "best_delta_v": [8500, 10200, 11600, 12400, 12950, 13200, 13350, 13420, 13450, 13465, 13470],
+            "mission_success": [0.68, 0.75, 0.82, 0.86, 0.88, 0.891, 0.896, 0.898, 0.899, 0.899, 0.899],
+            "population_diversity": [0.94, 0.86, 0.78, 0.69, 0.61, 0.54, 0.48, 0.43, 0.39, 0.36, 0.33]
+          },
+          "final_performance": {
+            "mission_success_probability": 0.899,
+            "delta_v_capability": 13470,
+            "power_efficiency": 0.98,
+            "thermal_stability": 0.73,
+            "scientific_return": 0.91,
+            "trajectory_accuracy": 0.95
+          },
+          "computational_metrics": {
+            "total_evaluations": 4750,
+            "convergence_generation": 88,
+            "total_time_seconds": 1892.4,
+            "fidelity_distribution": {
+              "low": 3325,
+              "medium": 950,
+              "high": 475
+            },
+            "cost_savings_vs_high_fidelity": 0.889
+          }
+        }
+      },
+      "mars_orbiter_004": {
+        "mission_parameters": {
+          "dry_mass": 3250,
+          "fuel_mass": 22000,
+          "specific_impulse": 340,
+          "thrust": 2800,
+          "solar_panel_area": 165.8,
+          "thermal_mass": 1480,
+          "target_orbit_altitude": 400,
+          "mission_duration": 2920
+        },
+        "optimization_results": {
+          "algorithm": "ParticleSwarmOptimization",
+          "convergence_data": {
+            "iterations": [1, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40],
+            "best_mission_success": [0.71, 0.79, 0.84, 0.88, 0.905, 0.918, 0.925, 0.928, 0.929, 0.929, 0.929],
+            "orbital_insertion_accuracy": [0.82, 0.87, 0.91, 0.94, 0.96, 0.97, 0.98, 0.98, 0.98, 0.98, 0.98],
+            "swarm_convergence": [2.8, 2.1, 1.6, 1.2, 0.9, 0.7, 0.6, 0.5, 0.4, 0.4, 0.3]
+          },
+          "final_performance": {
+            "mission_success_probability": 0.929,
+            "delta_v_capability": 7850,
+            "power_efficiency": 1.05,
+            "thermal_stability": 0.84,
+            "orbital_precision": 0.98,
+            "atmospheric_analysis_capability": 0.87
+          },
+          "computational_metrics": {
+            "total_evaluations": 1200,
+            "convergence_iteration": 34,
+            "total_time_seconds": 658.9,
+            "fidelity_distribution": {
+              "low": 840,
+              "medium": 240,
+              "high": 120
+            },
+            "cost_savings_vs_high_fidelity": 0.863
+          }
+        }
+      }
+    },
+    "orbital_mechanics_analysis": {
+      "hohmann_transfers": {
+        "earth_to_mars": {
+          "delta_v_theoretical": 5700,
+          "delta_v_optimized": 5420,
+          "improvement_percent": 4.9,
+          "transfer_time_days": 259
+        },
+        "earth_to_geostationary": {
+          "delta_v_theoretical": 3900,
+          "delta_v_optimized": 3750,
+          "improvement_percent": 3.8,
+          "transfer_time_hours": 10.5
+        }
+      },
+      "low_thrust_spirals": {
+        "leo_to_geo": {
+          "delta_v_required": 4200,
+          "spiral_time_days": 120,
+          "efficiency_factor": 0.92
+        },
+        "earth_escape": {
+          "delta_v_required": 3200,
+          "escape_time_days": 180,
+          "efficiency_factor": 0.88
+        }
+      }
+    },
+    "uncertainty_analysis": {
+      "parameter_uncertainties": {
+        "mass_tolerance": 0.03,
+        "thrust_variation": 0.05,
+        "isp_degradation": 0.02,
+        "solar_flux_variation": 0.08
+      },
+      "monte_carlo_results": {
+        "samples": 1000,
+        "mission_success_mean": 0.912,
+        "mission_success_std": 0.024,
+        "confidence_intervals": {
+          "95_percent": [0.867, 0.957],
+          "99_percent": [0.850, 0.974]
+        }
+      }
+    },
+    "summary_statistics": {
+      "average_mission_success": 0.9165,
+      "std_mission_success": 0.0186,
+      "average_delta_v": 8481.25,
+      "average_convergence_time": 1070.8,
+      "total_function_evaluations": 10000,
+      "overall_cost_savings": 0.863,
+      "algorithms_tested": ["BayesianOptimization", "NSGA2", "GeneticAlgorithm", "ParticleSwarmOptimization"],
+      "mission_types": ["earth_observation", "communication", "deep_space", "planetary_orbiter"],
+      "fidelity_usage_percentages": {
+        "low": 73.95,
+        "medium": 16.98,
+        "high": 9.07
+      }
+    }
+  }
+}

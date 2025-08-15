@@ -1,0 +1,571 @@
+{
+  "spacecraft_validation_cases": {
+    "metadata": {
+      "validation_date": "2024-08-14T16:00:00Z",
+      "framework_version": "1.0.0",
+      "total_test_cases": 10,
+      "validation_standard": "NASA-STD-7009A",
+      "reference_accuracy_tolerance": 0.001
+    },
+    "case_001_hohmann_transfer": {
+      "problem_description": "Classic Hohmann transfer orbit optimization from LEO to GEO",
+      "problem_type": "orbital_transfer_optimization",
+      "reference_source": "Bate, Mueller & White, Fundamentals of Astrodynamics (1971)",
+      "design_variables": {
+        "number_of_variables": 6,
+        "variable_descriptions": [
+          "departure_true_anomaly_deg",
+          "transfer_orbit_semi_major_axis_km",
+          "transfer_orbit_eccentricity",
+          "first_burn_delta_v_ms",
+          "coast_time_seconds",
+          "second_burn_delta_v_ms"
+        ],
+        "bounds": {
+          "lower": [0.0, 20000.0, 0.7, 2400.0, 18000.0, 1400.0],
+          "upper": [360.0, 30000.0, 0.95, 2600.0, 22000.0, 1600.0]
+        }
+      },
+      "initial_conditions": {
+        "parking_orbit_altitude_km": 300,
+        "parking_orbit_inclination_deg": 28.5,
+        "target_orbit_altitude_km": 35786,
+        "target_orbit_inclination_deg": 0.0,
+        "spacecraft_mass_kg": 2500,
+        "propulsion_isp_seconds": 315
+      },
+      "analytical_solution": {
+        "optimal_departure_true_anomaly_deg": 0.0,
+        "optimal_transfer_orbit_semi_major_axis_km": 24564.0,
+        "optimal_transfer_orbit_eccentricity": 0.7308,
+        "optimal_first_burn_delta_v_ms": 2440.8,
+        "optimal_coast_time_seconds": 19312.5,
+        "optimal_second_burn_delta_v_ms": 1478.2,
+        "optimal_total_delta_v_ms": 3919.0,
+        "optimal_transfer_time_hours": 5.36,
+        "optimal_fuel_mass_kg": 385.4
+      },
+      "validation_metrics": {
+        "delta_v_tolerance_ms": 5.0,
+        "transfer_time_tolerance_minutes": 2.0,
+        "orbital_element_tolerance": 0.001
+      }
+    },
+    "case_002_bi_elliptic_transfer": {
+      "problem_description": "Bi-elliptic transfer optimization for high altitude ratio transfers",
+      "problem_type": "multi_impulse_transfer_optimization",
+      "reference_source": "Vallado, Fundamentals of Astrodynamics and Applications (2013)",
+      "design_variables": {
+        "number_of_variables": 9,
+        "variable_descriptions": [
+          "first_transfer_apogee_km",
+          "second_transfer_perigee_km",
+          "first_burn_delta_v_ms",
+          "second_burn_delta_v_ms",
+          "third_burn_delta_v_ms",
+          "first_coast_time_seconds",
+          "second_coast_time_seconds",
+          "departure_anomaly_deg",
+          "intermediate_anomaly_deg"
+        ],
+        "bounds": {
+          "lower": [50000.0, 300.0, 2200.0, 800.0, 500.0, 20000.0, 30000.0, 0.0, 0.0],
+          "upper": [100000.0, 42164.0, 2800.0, 1200.0, 800.0, 40000.0, 60000.0, 360.0, 360.0]
+        }
+      },
+      "initial_conditions": {
+        "initial_orbit_altitude_km": 300,
+        "final_orbit_altitude_km": 384400,
+        "spacecraft_mass_kg": 1800,
+        "propulsion_isp_seconds": 325,
+        "gravitational_parameter_km3_per_s2": 398600.4418
+      },
+      "analytical_solution": {
+        "optimal_first_transfer_apogee_km": 67420.0,
+        "optimal_second_transfer_perigee_km": 384400.0,
+        "optimal_first_burn_delta_v_ms": 2458.6,
+        "optimal_second_burn_delta_v_ms": 965.8,
+        "optimal_third_burn_delta_v_ms": 632.4,
+        "optimal_first_coast_time_seconds": 28954.0,
+        "optimal_second_coast_time_seconds": 47832.0,
+        "optimal_departure_anomaly_deg": 0.0,
+        "optimal_intermediate_anomaly_deg": 180.0,
+        "optimal_total_delta_v_ms": 4056.8,
+        "optimal_total_transfer_time_hours": 21.33,
+        "optimal_fuel_mass_kg": 412.5
+      },
+      "validation_metrics": {
+        "delta_v_tolerance_ms": 8.0,
+        "transfer_time_tolerance_hours": 0.5,
+        "trajectory_accuracy_km": 10.0
+      }
+    },
+    "case_003_interplanetary_trajectory": {
+      "problem_description": "Earth-Mars interplanetary trajectory optimization using patched conics",
+      "problem_type": "interplanetary_transfer_optimization",
+      "reference_source": "Battin, An Introduction to the Mathematics and Methods of Astrodynamics (1999)",
+      "design_variables": {
+        "number_of_variables": 12,
+        "variable_descriptions": [
+          "departure_date_mjd",
+          "flight_time_days",
+          "departure_c3_km2_per_s2",
+          "departure_declination_deg",
+          "departure_right_ascension_deg",
+          "arrival_c3_km2_per_s2",
+          "arrival_declination_deg",
+          "arrival_right_ascension_deg",
+          "deep_space_maneuver_delta_v_ms",
+          "dsm_time_fraction",
+          "launch_energy_km2_per_s2",
+          "arrival_energy_km2_per_s2"
+        ],
+        "bounds": {
+          "lower": [60000.0, 180.0, 8.0, -28.5, 0.0, 0.0, -28.5, 0.0, 0.0, 0.1, 8.0, 0.0],
+          "upper": [65000.0, 400.0, 20.0, 28.5, 360.0, 15.0, 28.5, 360.0, 2000.0, 0.9, 20.0, 15.0]
+        }
+      },
+      "mission_parameters": {
+        "spacecraft_mass_kg": 4500,
+        "propulsion_isp_seconds": 315,
+        "launch_vehicle_c3_limit_km2_per_s2": 18.0,
+        "arrival_orbit_altitude_km": 500,
+        "mission_type": "mars_orbiter"
+      },
+      "analytical_solution": {
+        "optimal_departure_date_mjd": 62135.5,
+        "optimal_flight_time_days": 259.2,
+        "optimal_departure_c3_km2_per_s2": 12.84,
+        "optimal_departure_declination_deg": 15.8,
+        "optimal_departure_right_ascension_deg": 45.2,
+        "optimal_arrival_c3_km2_per_s2": 2.95,
+        "optimal_arrival_declination_deg": -8.4,
+        "optimal_arrival_right_ascension_deg": 165.8,
+        "optimal_deep_space_maneuver_delta_v_ms": 185.4,
+        "optimal_dsm_time_fraction": 0.42,
+        "optimal_launch_energy_km2_per_s2": 12.84,
+        "optimal_arrival_energy_km2_per_s2": 2.95,
+        "optimal_total_delta_v_ms": 3824.6,
+        "optimal_mars_orbit_insertion_delta_v_ms": 1456.8,
+        "optimal_mission_duration_days": 259.2
+      },
+      "validation_metrics": {
+        "trajectory_accuracy_km": 1000.0,
+        "delta_v_tolerance_ms": 20.0,
+        "arrival_date_tolerance_days": 1.0
+      }
+    },
+    "case_004_satellite_constellation": {
+      "problem_description": "Walker constellation optimization for global coverage",
+      "problem_type": "constellation_design_optimization",
+      "reference_source": "Walker, Satellite Constellations (1984)",
+      "design_variables": {
+        "number_of_variables": 8,
+        "variable_descriptions": [
+          "number_of_satellites",
+          "number_of_orbital_planes",
+          "orbital_altitude_km",
+          "orbital_inclination_deg",
+          "phase_offset_deg",
+          "satellite_spacing_deg",
+          "ground_station_elevation_angle_deg",
+          "coverage_overlap_percent"
+        ],
+        "bounds": {
+          "lower": [12.0, 3.0, 500.0, 45.0, 0.0, 15.0, 5.0, 5.0],
+          "upper": [48.0, 8.0, 1500.0, 98.0, 360.0, 45.0, 25.0, 25.0]
+        }
+      },
+      "mission_requirements": {
+        "global_coverage_percent": 95.0,
+        "minimum_elevation_angle_deg": 10.0,
+        "maximum_revisit_time_minutes": 120.0,
+        "constellation_lifetime_years": 5.0,
+        "total_mission_cost_million_usd": 500.0
+      },
+      "analytical_solution": {
+        "optimal_number_of_satellites": 24,
+        "optimal_number_of_orbital_planes": 6,
+        "optimal_orbital_altitude_km": 780.0,
+        "optimal_orbital_inclination_deg": 86.4,
+        "optimal_phase_offset_deg": 22.5,
+        "optimal_satellite_spacing_deg": 30.0,
+        "optimal_ground_station_elevation_angle_deg": 15.0,
+        "optimal_coverage_overlap_percent": 12.5,
+        "optimal_global_coverage_percent": 97.8,
+        "optimal_average_revisit_time_minutes": 85.4,
+        "optimal_constellation_efficiency": 0.924,
+        "optimal_launch_cost_million_usd": 240.0
+      },
+      "validation_metrics": {
+        "coverage_tolerance_percent": 1.0,
+        "revisit_time_tolerance_minutes": 5.0,
+        "orbital_accuracy_km": 2.0
+      }
+    },
+    "case_005_spacecraft_attitude_control": {
+      "problem_description": "Spacecraft attitude control system optimization using reaction wheels",
+      "problem_type": "attitude_control_optimization",
+      "reference_source": "Wie, Space Vehicle Dynamics and Control (2008)",
+      "design_variables": {
+        "number_of_variables": 10,
+        "variable_descriptions": [
+          "reaction_wheel_momentum_nms",
+          "wheel_spin_rate_rpm",
+          "control_gain_proportional",
+          "control_gain_derivative",
+          "control_gain_integral",
+          "actuator_torque_limit_nm",
+          "sensor_noise_level_arcsec",
+          "deadband_angle_deg",
+          "slew_rate_limit_deg_per_sec",
+          "power_consumption_w"
+        ],
+        "bounds": {
+          "lower": [5.0, 1000.0, 0.1, 0.01, 0.001, 0.05, 1.0, 0.001, 0.1, 50.0],
+          "upper": [50.0, 6000.0, 10.0, 1.0, 0.1, 1.0, 10.0, 0.1, 5.0, 200.0]
+        }
+      },
+      "mission_requirements": {
+        "pointing_accuracy_arcsec": 5.0,
+        "settling_time_seconds": 60.0,
+        "maximum_overshoot_percent": 10.0,
+        "disturbance_rejection_db": 40.0,
+        "mission_lifetime_years": 5.0
+      },
+      "analytical_solution": {
+        "optimal_reaction_wheel_momentum_nms": 18.5,
+        "optimal_wheel_spin_rate_rpm": 3200.0,
+        "optimal_control_gain_proportional": 2.84,
+        "optimal_control_gain_derivative": 0.185,
+        "optimal_control_gain_integral": 0.025,
+        "optimal_actuator_torque_limit_nm": 0.28,
+        "optimal_sensor_noise_level_arcsec": 2.5,
+        "optimal_deadband_angle_deg": 0.008,
+        "optimal_slew_rate_limit_deg_per_sec": 1.85,
+        "optimal_power_consumption_w": 95.4,
+        "optimal_pointing_accuracy_arcsec": 3.2,
+        "optimal_settling_time_seconds": 42.8,
+        "optimal_stability_margin_db": 12.5,
+        "optimal_control_bandwidth_hz": 0.85
+      },
+      "validation_metrics": {
+        "pointing_accuracy_tolerance_arcsec": 0.5,
+        "settling_time_tolerance_seconds": 5.0,
+        "stability_margin_tolerance_db": 2.0
+      }
+    },
+    "case_006_rendezvous_docking": {
+      "problem_description": "Spacecraft rendezvous and docking trajectory optimization",
+      "problem_type": "proximity_operations_optimization",
+      "reference_source": "Fehse, Automated Rendezvous and Docking of Spacecraft (2003)",
+      "design_variables": {
+        "number_of_variables": 14,
+        "variable_descriptions": [
+          "approach_velocity_ms",
+          "final_approach_distance_m",
+          "docking_axis_alignment_deg",
+          "lateral_offset_tolerance_m",
+          "angular_alignment_tolerance_deg",
+          "approach_corridor_angle_deg",
+          "braking_distance_m",
+          "hold_point_distance_m",
+          "station_keeping_duration_minutes",
+          "relative_velocity_limit_ms",
+          "thrust_magnitude_n",
+          "fuel_consumption_kg",
+          "mission_duration_hours",
+          "safety_margin_factor"
+        ],
+        "bounds": {
+          "lower": [0.01, 50.0, 0.0, 0.1, 0.5, 10.0, 10.0, 100.0, 5.0, 0.005, 1.0, 5.0, 6.0, 1.5],
+          "upper": [0.5, 500.0, 5.0, 2.0, 5.0, 30.0, 100.0, 1000.0, 60.0, 0.1, 50.0, 50.0, 48.0, 3.0]
+        }
+      },
+      "mission_parameters": {
+        "target_spacecraft_mass_kg": 15000,
+        "chaser_spacecraft_mass_kg": 8500,
+        "docking_port_diameter_m": 1.2,
+        "approach_corridor_length_m": 2000,
+        "mission_success_probability": 0.99
+      },
+      "analytical_solution": {
+        "optimal_approach_velocity_ms": 0.08,
+        "optimal_final_approach_distance_m": 150.0,
+        "optimal_docking_axis_alignment_deg": 0.5,
+        "optimal_lateral_offset_tolerance_m": 0.25,
+        "optimal_angular_alignment_tolerance_deg": 1.2,
+        "optimal_approach_corridor_angle_deg": 15.8,
+        "optimal_braking_distance_m": 45.0,
+        "optimal_hold_point_distance_m": 500.0,
+        "optimal_station_keeping_duration_minutes": 25.0,
+        "optimal_relative_velocity_limit_ms": 0.02,
+        "optimal_thrust_magnitude_n": 12.5,
+        "optimal_fuel_consumption_kg": 18.4,
+        "optimal_mission_duration_hours": 12.5,
+        "optimal_safety_margin_factor": 2.2,
+        "optimal_success_probability": 0.996,
+        "optimal_total_delta_v_ms": 2.85
+      },
+      "validation_metrics": {
+        "position_accuracy_tolerance_m": 0.1,
+        "velocity_accuracy_tolerance_ms": 0.005,
+        "angular_accuracy_tolerance_deg": 0.2
+      }
+    },
+    "case_007_lunar_landing_trajectory": {
+      "problem_description": "Lunar landing trajectory optimization from low lunar orbit",
+      "problem_type": "powered_descent_optimization",
+      "reference_source": "Battin, Astronautical Guidance (1964)",
+      "design_variables": {
+        "number_of_variables": 11,
+        "variable_descriptions": [
+          "powered_descent_initiation_altitude_km",
+          "braking_phase_duration_seconds",
+          "approach_phase_duration_seconds",
+          "landing_phase_duration_seconds",
+          "thrust_profile_parameter_1",
+          "thrust_profile_parameter_2",
+          "throttle_setting_braking",
+          "throttle_setting_approach",
+          "throttle_setting_landing",
+          "landing_site_latitude_deg",
+          "landing_site_longitude_deg"
+        ],
+        "bounds": {
+          "lower": [8.0, 300.0, 120.0, 60.0, 0.5, 0.3, 0.3, 0.1, 0.6, -85.0, -180.0],
+          "upper": [20.0, 800.0, 400.0, 180.0, 1.0, 0.8, 1.0, 0.8, 1.0, 85.0, 180.0]
+        }
+      },
+      "mission_parameters": {
+        "spacecraft_mass_kg": 15000,
+        "lunar_gravitational_parameter_km3_per_s2": 4902.8,
+        "engine_specific_impulse_seconds": 311,
+        "maximum_thrust_n": 45000,
+        "landing_accuracy_requirement_m": 100
+      },
+      "analytical_solution": {
+        "optimal_powered_descent_initiation_altitude_km": 12.5,
+        "optimal_braking_phase_duration_seconds": 485.0,
+        "optimal_approach_phase_duration_seconds": 245.0,
+        "optimal_landing_phase_duration_seconds": 95.0,
+        "optimal_thrust_profile_parameter_1": 0.75,
+        "optimal_thrust_profile_parameter_2": 0.55,
+        "optimal_throttle_setting_braking": 0.85,
+        "optimal_throttle_setting_approach": 0.45,
+        "optimal_throttle_setting_landing": 0.92,
+        "optimal_landing_site_latitude_deg": 23.8,
+        "optimal_landing_site_longitude_deg": 15.2,
+        "optimal_fuel_consumption_kg": 8450.0,
+        "optimal_landing_accuracy_m": 45.8,
+        "optimal_total_delta_v_ms": 2850.0,
+        "optimal_descent_time_seconds": 825.0
+      },
+      "validation_metrics": {
+        "landing_accuracy_tolerance_m": 20.0,
+        "fuel_consumption_tolerance_kg": 200.0,
+        "trajectory_deviation_tolerance_m": 50.0
+      }
+    },
+    "case_008_space_tether_dynamics": {
+      "problem_description": "Space tether system optimization for orbital debris removal",
+      "problem_type": "tether_dynamics_optimization",
+      "reference_source": "Cosmo & Lorenzini, Tethers in Space Handbook (1997)",
+      "design_variables": {
+        "number_of_variables": 9,
+        "variable_descriptions": [
+          "tether_length_km",
+          "tether_mass_per_unit_length_kg_per_m",
+          "tether_young_modulus_gpa",
+          "deployment_rate_m_per_s",
+          "orbital_inclination_deg",
+          "libration_damping_coefficient",
+          "electrodynamic_current_a",
+          "debris_capture_velocity_ms",
+          "system_mass_kg"
+        ],
+        "bounds": {
+          "lower": [5.0, 0.01, 50.0, 0.1, 45.0, 0.01, 0.0, 1.0, 500.0],
+          "upper": [50.0, 0.5, 200.0, 5.0, 98.0, 1.0, 10.0, 20.0, 5000.0]
+        }
+      },
+      "mission_parameters": {
+        "orbital_altitude_km": 650,
+        "debris_mass_kg": 2500,
+        "earth_magnetic_field_t": 25e-6,
+        "ionospheric_density_per_m3": 1e11,
+        "mission_duration_days": 30
+      },
+      "analytical_solution": {
+        "optimal_tether_length_km": 18.5,
+        "optimal_tether_mass_per_unit_length_kg_per_m": 0.085,
+        "optimal_tether_young_modulus_gpa": 120.0,
+        "optimal_deployment_rate_m_per_s": 1.25,
+        "optimal_orbital_inclination_deg": 72.5,
+        "optimal_libration_damping_coefficient": 0.15,
+        "optimal_electrodynamic_current_a": 3.8,
+        "optimal_debris_capture_velocity_ms": 8.5,
+        "optimal_system_mass_kg": 1850.0,
+        "optimal_deorbit_time_days": 28.5,
+        "optimal_tether_tension_n": 145.0,
+        "optimal_power_generation_w": 285.0,
+        "optimal_debris_removal_efficiency": 0.95
+      },
+      "validation_metrics": {
+        "orbital_decay_tolerance_km": 5.0,
+        "tether_tension_tolerance_n": 10.0,
+        "system_stability_margin": 0.2
+      }
+    },
+    "case_009_ion_propulsion_trajectory": {
+      "problem_description": "Low-thrust ion propulsion trajectory optimization for asteroid mission",
+      "problem_type": "low_thrust_trajectory_optimization",
+      "reference_source": "Rayman, Ion Propulsion: An Essential Technology (2003)",
+      "design_variables": {
+        "number_of_variables": 15,
+        "variable_descriptions": [
+          "thrust_magnitude_mn",
+          "specific_impulse_seconds",
+          "power_consumption_kw",
+          "thrust_direction_angle_1_deg",
+          "thrust_direction_angle_2_deg",
+          "thrust_duty_cycle",
+          "spiral_out_time_days",
+          "cruise_phase_time_days",
+          "spiral_in_time_days",
+          "xenon_fuel_mass_kg",
+          "solar_array_area_m2",
+          "solar_array_efficiency",
+          "thruster_efficiency",
+          "trajectory_optimization_nodes",
+          "asteroid_approach_velocity_ms"
+        ],
+        "bounds": {
+          "lower": [20.0, 2500.0, 2.0, -180.0, -90.0, 0.5, 100.0, 300.0, 50.0, 200.0, 20.0, 0.25, 0.5, 50.0, 0.5],
+          "upper": [200.0, 4000.0, 15.0, 180.0, 90.0, 1.0, 500.0, 1000.0, 200.0, 800.0, 100.0, 0.35, 0.8, 200.0, 10.0]
+        }
+      },
+      "mission_parameters": {
+        "launch_c3_km2_per_s2": 12.0,
+        "target_asteroid": "433_Eros",
+        "mission_duration_years": 3.5,
+        "spacecraft_dry_mass_kg": 2800,
+        "science_payload_mass_kg": 450
+      },
+      "analytical_solution": {
+        "optimal_thrust_magnitude_mn": 92.0,
+        "optimal_specific_impulse_seconds": 3200.0,
+        "optimal_power_consumption_kw": 8.5,
+        "optimal_thrust_direction_angle_1_deg": 15.8,
+        "optimal_thrust_direction_angle_2_deg": -8.4,
+        "optimal_thrust_duty_cycle": 0.85,
+        "optimal_spiral_out_time_days": 285.0,
+        "optimal_cruise_phase_time_days": 625.0,
+        "optimal_spiral_in_time_days": 125.0,
+        "optimal_xenon_fuel_mass_kg": 485.0,
+        "optimal_solar_array_area_m2": 58.5,
+        "optimal_solar_array_efficiency": 0.29,
+        "optimal_thruster_efficiency": 0.68,
+        "optimal_trajectory_optimization_nodes": 120,
+        "optimal_asteroid_approach_velocity_ms": 3.2,
+        "optimal_total_delta_v_ms": 8450.0,
+        "optimal_mission_duration_days": 1035.0,
+        "optimal_fuel_efficiency_ms_per_kg": 17.4
+      },
+      "validation_metrics": {
+        "trajectory_accuracy_tolerance_km": 500.0,
+        "delta_v_tolerance_ms": 50.0,
+        "arrival_time_tolerance_days": 5.0
+      }
+    },
+    "case_010_formation_flying_optimization": {
+      "problem_description": "Spacecraft formation flying optimization for interferometry mission",
+      "problem_type": "formation_flying_optimization",
+      "reference_source": "Scharf, A Survey of Spacecraft Formation Flying Guidance and Control (2003)",
+      "design_variables": {
+        "number_of_variables": 12,
+        "variable_descriptions": [
+          "formation_size_m",
+          "number_of_spacecraft",
+          "relative_orbital_elements_a_m",
+          "relative_orbital_elements_e",
+          "relative_orbital_elements_i_deg",
+          "formation_geometry_parameter",
+          "station_keeping_delta_v_budget_ms",
+          "formation_reconfiguration_time_hours",
+          "baseline_length_m",
+          "pointing_accuracy_arcsec",
+          "formation_control_frequency_hz",
+          "inter_spacecraft_communication_range_km"
+        ],
+        "bounds": {
+          "lower": [100.0, 3.0, 10.0, 0.0, 0.0, 0.5, 5.0, 1.0, 50.0, 0.1, 0.01, 10.0],
+          "upper": [10000.0, 8.0, 1000.0, 0.1, 5.0, 2.0, 100.0, 24.0, 5000.0, 10.0, 1.0, 1000.0]
+        }
+      },
+      "mission_requirements": {
+        "baseline_stability_nm": 1.0,
+        "formation_lifetime_years": 2.0,
+        "science_duty_cycle": 0.8,
+        "angular_resolution_mas": 0.1,
+        "observation_efficiency": 0.9
+      },
+      "analytical_solution": {
+        "optimal_formation_size_m": 2500.0,
+        "optimal_number_of_spacecraft": 4,
+        "optimal_relative_orbital_elements_a_m": 125.0,
+        "optimal_relative_orbital_elements_e": 0.02,
+        "optimal_relative_orbital_elements_i_deg": 1.5,
+        "optimal_formation_geometry_parameter": 1.25,
+        "optimal_station_keeping_delta_v_budget_ms": 35.0,
+        "optimal_formation_reconfiguration_time_hours": 8.5,
+        "optimal_baseline_length_m": 2000.0,
+        "optimal_pointing_accuracy_arcsec": 0.5,
+        "optimal_formation_control_frequency_hz": 0.1,
+        "optimal_inter_spacecraft_communication_range_km": 50.0,
+        "optimal_baseline_stability_nm": 0.8,
+        "optimal_angular_resolution_mas": 0.08,
+        "optimal_observation_efficiency": 0.92,
+        "optimal_fuel_consumption_kg_per_year": 8.5
+      },
+      "validation_metrics": {
+        "formation_accuracy_tolerance_m": 5.0,
+        "pointing_accuracy_tolerance_arcsec": 0.1,
+        "baseline_stability_tolerance_nm": 0.2
+      }
+    },
+    "validation_summary": {
+      "total_cases": 10,
+      "problem_categories": [
+        "orbital_mechanics",
+        "trajectory_optimization",
+        "attitude_control",
+        "proximity_operations",
+        "powered_descent",
+        "tether_dynamics",
+        "low_thrust_propulsion",
+        "formation_flying",
+        "constellation_design",
+        "interplanetary_missions"
+      ],
+      "complexity_levels": {
+        "simple_problems_5_10_vars": 3,
+        "medium_problems_10_15_vars": 5,
+        "complex_problems_15_plus_vars": 2
+      },
+      "validation_accuracy_requirements": {
+        "minimum_trajectory_accuracy_m": 1.0,
+        "maximum_trajectory_accuracy_km": 10.0,
+        "typical_delta_v_tolerance_ms": 10.0,
+        "orbital_element_precision": 0.001
+      },
+      "reference_missions": [
+        "Apollo_Lunar_Landing",
+        "Voyager_Grand_Tour",
+        "Dawn_Ion_Propulsion",
+        "ISS_Rendezvous_Docking",
+        "Cassini_Saturn_Orbit_Insertion"
+      ]
+    }
+  }
+}

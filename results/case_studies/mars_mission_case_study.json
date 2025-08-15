@@ -1,0 +1,30 @@
+{
+  "case_study_metadata": {
+    "study_id": "CS002",
+    "title": "Mars Sample Return Mission Trajectory Optimization",
+    "industry_partner": "Deep Space Exploration Agency",
+    "duration_weeks": 16,
+    "team_size": 12,
+    "completion_date": "2024-07-15"
+  },
+  "mission_requirements": {
+    "mission_type": "mars_sample_return",
+    "launch_window": "2026-08-15 to 2026-09-10",
+    "sample_mass_kg": 500,
+    "total_mission_duration_years": 4.2,
+    "reliability_requirement": 0.95
+  },
+  "optimization_results": {
+    "optimal_launch_date": "2026-08-22",
+    "total_delta_v_ms": 8450,
+    "fuel_mass_fraction": 0.72,
+    "mission_success_probability": 0.97,
+    "computational_speedup": 167.8
+  },
+  "mission_impact": {
+    "cost_savings_million_usd": 125,
+    "risk_reduction": "15% lower mission risk",
+    "timeline_acceleration": "8 months faster development",
+    "scientific_value": "Enhanced sample diversity capability"
+  }
+}

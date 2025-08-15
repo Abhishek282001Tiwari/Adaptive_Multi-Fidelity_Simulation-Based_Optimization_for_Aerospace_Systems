@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">{{ page.title }}</h1>
+        {% if page.description %}
+        <p class="page-description">{{ page.description }}</p>
+        {% endif %}
+        
+        <div class="result-meta">
+            {% if page.algorithm %}
+            <span class="meta-item">Algorithm: <strong>{{ page.algorithm }}</strong></span>
+            {% endif %}
+            {% if page.system_type %}
+            <span class="meta-item">System: <strong>{{ page.system_type }}</strong></span>
+            {% endif %}
+            {% if page.date %}
+            <span class="meta-item">Date: <strong>{{ page.date | date: "%B %d, %Y" }}</strong></span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <article class="result-wrapper">
+            {{ content }}
+        </article>
+    </div>
+</div>

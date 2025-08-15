@@ -1,0 +1,363 @@
+{
+  "project": {
+    "name": "Adaptive Multi-Fidelity Simulation-Based Optimization for Aerospace Systems",
+    "abbreviation": "AMF-SBO",
+    "version": "1.0.0",
+    "description": "Advanced multi-fidelity optimization framework for aerospace design under uncertainty",
+    "authors": ["Aerospace Optimization Research Team"],
+    "license": "MIT"
+  },
+  
+  "optimization": {
+    "default_parameters": {
+      "max_evaluations": 200,
+      "convergence_tolerance": 1e-6,
+      "population_size": 50,
+      "computational_budget": 3600.0
+    },
+    
+    "algorithms": {
+      "genetic_algorithm": {
+        "population_size": 50,
+        "crossover_rate": 0.8,
+        "mutation_rate": 0.1,
+        "tournament_size": 3,
+        "elite_preservation": 0.1
+      },
+      
+      "particle_swarm": {
+        "swarm_size": 30,
+        "inertia_weight": 0.729,
+        "cognitive_parameter": 1.49445,
+        "social_parameter": 1.49445,
+        "max_velocity_ratio": 0.2
+      },
+      
+      "bayesian_optimization": {
+        "acquisition_function": "expected_improvement",
+        "kernel": "matern_52",
+        "n_initial_points": 10,
+        "xi": 0.01,
+        "kappa": 2.576
+      },
+      
+      "multi_objective": {
+        "algorithm": "nsga2",
+        "population_size": 100,
+        "crossover_probability": 0.9,
+        "mutation_probability": 0.1
+      }
+    },
+    
+    "fidelity_switching": {
+      "strategies": ["conservative", "aggressive", "balanced", "adaptive"],
+      "default_strategy": "adaptive",
+      "switching_criteria": {
+        "max_low_fidelity_evals": 100,
+        "convergence_threshold": 0.01,
+        "uncertainty_threshold": 0.05,
+        "computational_budget_fraction": 0.7
+      }
+    },
+    
+    "uncertainty_quantification": {
+      "monte_carlo_samples": 1000,
+      "confidence_levels": [0.90, 0.95, 0.99],
+      "sensitivity_methods": ["morris", "sobol"],
+      "robustness_measures": ["mean_std", "worst_case", "cvar"]
+    }
+  },
+  
+  "aircraft": {
+    "default_mission_profiles": {
+      "commercial": {
+        "description": "Long-range commercial airliner",
+        "cruise_altitude": 11000.0,
+        "cruise_mach": 0.78,
+        "range_requirement": 5000.0,
+        "payload_requirement": 15000.0,
+        "fuel_efficiency_target": 20.0
+      },
+      
+      "regional": {
+        "description": "Short to medium-range regional aircraft",
+        "cruise_altitude": 8000.0,
+        "cruise_mach": 0.65,
+        "range_requirement": 2000.0,
+        "payload_requirement": 8000.0,
+        "fuel_efficiency_target": 15.0
+      },
+      
+      "business_jet": {
+        "description": "High-performance business jet",
+        "cruise_altitude": 12000.0,
+        "cruise_mach": 0.80,
+        "range_requirement": 6000.0,
+        "payload_requirement": 2000.0,
+        "fuel_efficiency_target": 12.0
+      }
+    },
+    
+    "parameter_bounds": {
+      "wingspan": {"min": 10.0, "max": 80.0, "units": "m"},
+      "wing_area": {"min": 20.0, "max": 500.0, "units": "m²"},
+      "aspect_ratio": {"min": 5.0, "max": 15.0, "units": "-"},
+      "sweep_angle": {"min": 0.0, "max": 45.0, "units": "degrees"},
+      "taper_ratio": {"min": 0.3, "max": 1.0, "units": "-"},
+      "thickness_ratio": {"min": 0.08, "max": 0.18, "units": "-"},
+      "cruise_altitude": {"min": 1000.0, "max": 15000.0, "units": "m"},
+      "cruise_mach": {"min": 0.1, "max": 0.9, "units": "-"},
+      "weight": {"min": 5000.0, "max": 100000.0, "units": "kg"}
+    },
+    
+    "objectives": {
+      "lift_to_drag_ratio": {"type": "maximize", "weight": 0.3, "target": 18.0},
+      "fuel_efficiency": {"type": "maximize", "weight": 0.3, "target": 20.0},
+      "range": {"type": "maximize", "weight": 0.25, "target": 5000.0},
+      "payload_capacity": {"type": "maximize", "weight": 0.15, "target": 15000.0}
+    },
+    
+    "constraints": {
+      "max_takeoff_weight": 100000.0,
+      "min_range": 1000.0,
+      "max_stall_speed": 70.0,
+      "min_fuel_efficiency": 10.0,
+      "min_payload": 5000.0,
+      "structural_margin": 0.5
+    },
+    
+    "uncertainty_sources": {
+      "manufacturing_tolerance": {
+        "wingspan": {"type": "normal", "std": 0.5},
+        "wing_area": {"type": "normal", "std": 5.0},
+        "thickness_ratio": {"type": "normal", "std": 0.005}
+      },
+      "environmental": {
+        "temperature_variation": {"type": "uniform", "range": [-10.0, 10.0]},
+        "atmospheric_density": {"type": "normal", "std": 0.05},
+        "wind_conditions": {"type": "triangular", "params": [0.8, 1.0, 1.2]}
+      },
+      "operational": {
+        "weight_variation": {"type": "normal", "std": 1000.0},
+        "fuel_quality": {"type": "beta", "alpha": 9, "beta": 1}
+      }
+    }
+  },
+  
+  "spacecraft": {
+    "default_mission_types": {
+      "earth_observation": {
+        "description": "Low Earth orbit observation satellite",
+        "target_orbit_altitude": 700.0,
+        "mission_duration": 1825.0,
+        "payload_mass": 2000.0,
+        "power_requirement": 3000.0,
+        "pointing_accuracy": "high"
+      },
+      
+      "communication": {
+        "description": "Geostationary communication satellite",
+        "target_orbit_altitude": 35786.0,
+        "mission_duration": 5475.0,
+        "payload_mass": 3000.0,
+        "power_requirement": 8000.0,
+        "coverage_requirement": "global"
+      },
+      
+      "deep_space": {
+        "description": "Interplanetary exploration probe",
+        "target_orbit_altitude": 1000.0,
+        "mission_duration": 3650.0,
+        "payload_mass": 1500.0,
+        "delta_v_requirement": 12000.0,
+        "radiation_tolerance": "high"
+      }
+    },
+    
+    "parameter_bounds": {
+      "dry_mass": {"min": 1000.0, "max": 50000.0, "units": "kg"},
+      "fuel_mass": {"min": 5000.0, "max": 200000.0, "units": "kg"},
+      "specific_impulse": {"min": 200.0, "max": 450.0, "units": "s"},
+      "thrust": {"min": 1000.0, "max": 100000.0, "units": "N"},
+      "solar_panel_area": {"min": 10.0, "max": 200.0, "units": "m²"},
+      "thermal_mass": {"min": 500.0, "max": 10000.0, "units": "kg"},
+      "target_orbit_altitude": {"min": 200.0, "max": 35786.0, "units": "km"},
+      "mission_duration": {"min": 30.0, "max": 3650.0, "units": "days"},
+      "propellant_efficiency": {"min": 0.8, "max": 0.98, "units": "-"},
+      "attitude_control_mass": {"min": 50.0, "max": 1000.0, "units": "kg"},
+      "payload_mass": {"min": 100.0, "max": 10000.0, "units": "kg"}
+    },
+    
+    "objectives": {
+      "delta_v_capability": {"type": "maximize", "weight": 0.4, "target": 8000.0},
+      "mass_efficiency": {"type": "maximize", "weight": 0.25, "target": 0.85},
+      "power_efficiency": {"type": "maximize", "weight": 0.2, "target": 1.2},
+      "thermal_stability": {"type": "maximize", "weight": 0.15, "target": 0.9}
+    },
+    
+    "constraints": {
+      "max_total_mass": 250000.0,
+      "min_delta_v": 3000.0,
+      "min_mission_duration": 365.0,
+      "min_power_margin": 0.2,
+      "min_thermal_stability": 0.7,
+      "max_launch_cost": 100000000.0
+    },
+    
+    "orbital_environments": {
+      "leo": {
+        "altitude_range": [200, 2000],
+        "radiation_level": "moderate",
+        "debris_density": "high",
+        "atmospheric_drag": "significant"
+      },
+      "meo": {
+        "altitude_range": [2000, 35786],
+        "radiation_level": "high", 
+        "debris_density": "moderate",
+        "atmospheric_drag": "negligible"
+      },
+      "geo": {
+        "altitude_range": [35786, 35786],
+        "radiation_level": "very_high",
+        "debris_density": "low",
+        "atmospheric_drag": "none"
+      }
+    },
+    
+    "uncertainty_sources": {
+      "manufacturing_tolerance": {
+        "dry_mass": {"type": "normal", "std": 200.0},
+        "fuel_mass": {"type": "normal", "std": 500.0},
+        "specific_impulse": {"type": "normal", "std": 10.0},
+        "solar_panel_area": {"type": "normal", "std": 2.0}
+      },
+      "environmental": {
+        "solar_flux_variation": {"type": "uniform", "range": [0.95, 1.05]},
+        "atmospheric_density": {"type": "lognormal", "mu": 0.0, "sigma": 0.3},
+        "temperature_variation": {"type": "uniform", "range": [-25.0, 25.0]}
+      },
+      "operational": {
+        "thrust_efficiency": {"type": "beta", "alpha": 9, "beta": 1},
+        "solar_degradation": {"type": "triangular", "params": [0.98, 0.99, 1.0]},
+        "fuel_consumption_variance": {"type": "normal", "std": 0.05}
+      }
+    }
+  },
+  
+  "fidelity_models": {
+    "low_fidelity": {
+      "description": "Fast analytical models",
+      "computational_cost": 0.1,
+      "accuracy": 0.8,
+      "uncertainty": 0.15,
+      "use_cases": ["initial_exploration", "rapid_prototyping"]
+    },
+    
+    "medium_fidelity": {
+      "description": "Semi-empirical models with enhanced physics",
+      "computational_cost": 5.0,
+      "accuracy": 0.9,
+      "uncertainty": 0.08,
+      "use_cases": ["design_refinement", "constraint_verification"]
+    },
+    
+    "high_fidelity": {
+      "description": "Detailed computational models",
+      "computational_cost": 15.0,
+      "accuracy": 0.98,
+      "uncertainty": 0.03,
+      "use_cases": ["final_validation", "critical_analysis"]
+    }
+  },
+  
+  "visualization": {
+    "color_scheme": {
+      "primary_blue": "#1f4e79",
+      "secondary_blue": "#4472c4", 
+      "accent_blue": "#70ad47",
+      "light_blue": "#bdd7ee",
+      "dark_gray": "#404040",
+      "medium_gray": "#767171",
+      "light_gray": "#d9d9d9",
+      "white": "#ffffff",
+      "accent_orange": "#ff7c00",
+      "accent_red": "#c5504b"
+    },
+    
+    "plot_settings": {
+      "figure_size": [12, 8],
+      "dpi": 300,
+      "font_family": "Arial",
+      "font_size": 12,
+      "line_width": 2,
+      "marker_size": 6
+    },
+    
+    "export_formats": ["png", "pdf", "svg", "html"]
+  },
+  
+  "data_management": {
+    "storage_backend": "json",
+    "backup_enabled": true,
+    "compression": "gzip",
+    "retention_period_days": 365,
+    
+    "export_formats": {
+      "csv": {"enabled": true, "delimiter": ","},
+      "excel": {"enabled": true, "engine": "openpyxl"},
+      "hdf5": {"enabled": true, "compression": "gzip"},
+      "json": {"enabled": true, "indent": 2}
+    },
+    
+    "metadata_tracking": {
+      "session_info": true,
+      "algorithm_parameters": true,
+      "computational_resources": true,
+      "convergence_metrics": true,
+      "uncertainty_analysis": true
+    }
+  },
+  
+  "performance": {
+    "parallel_processing": {
+      "enabled": true,
+      "max_workers": "auto",
+      "chunk_size": 10
+    },
+    
+    "caching": {
+      "enabled": true,
+      "max_cache_size": 1000,
+      "cache_timeout": 3600
+    },
+    
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(levelname)s - %(message)s",
+      "file_rotation": true,
+      "max_file_size": "10MB"
+    }
+  },
+  
+  "validation": {
+    "benchmark_problems": [
+      "sphere_function",
+      "rosenbrock_function", 
+      "rastrigin_function",
+      "ackley_function"
+    ],
+    
+    "convergence_criteria": {
+      "relative_tolerance": 1e-6,
+      "absolute_tolerance": 1e-8,
+      "max_stagnation_generations": 50
+    },
+    
+    "statistical_tests": {
+      "significance_level": 0.05,
+      "confidence_intervals": [0.90, 0.95, 0.99],
+      "bootstrap_samples": 1000
+    }
+  }
+}

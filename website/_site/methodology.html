@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology - Adaptive Multi-Fidelity Aerospace Optimization</title>
+    <meta name="description" content="Detailed explanation of the multi-fidelity approach and optimization algorithms">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- SEO -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Methodology | Adaptive Multi-Fidelity Aerospace Optimization</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Methodology" />
+<meta name="author" content="Research Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Detailed explanation of the multi-fidelity approach and optimization algorithms" />
+<meta property="og:description" content="Detailed explanation of the multi-fidelity approach and optimization algorithms" />
+<link rel="canonical" href="http://localhost:4000/methodology.html" />
+<meta property="og:url" content="http://localhost:4000/methodology.html" />
+<meta property="og:site_name" content="Adaptive Multi-Fidelity Aerospace Optimization" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Methodology" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Research Team"},"description":"Detailed explanation of the multi-fidelity approach and optimization algorithms","headline":"Methodology","url":"http://localhost:4000/methodology.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="/" class="site-title">Adaptive Multi-Fidelity Aerospace Optimization</a>
+                
+                <div class="nav-menu">
+                    <a href="/" class="nav-link ">Home</a>
+                    <a href="/about/" class="nav-link ">About</a>
+                    <a href="/methodology/" class="nav-link active">Methodology</a>
+                    <a href="/results/" class="nav-link ">Results</a>
+                    <a href="/technical/" class="nav-link ">Technical</a>
+                    <a href="/downloads/" class="nav-link ">Downloads</a>
+                </div>
+                
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-content">
+        <div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Methodology</h1>
+        
+        <p class="page-description">Detailed explanation of the multi-fidelity approach and optimization algorithms</p>
+        
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <article class="content-wrapper">
+            <h2 id="multi-fidelity-simulation-framework">Multi-Fidelity Simulation Framework</h2>
+
+<h3 id="fidelity-levels-and-models">Fidelity Levels and Models</h3>
+
+<p>Our framework employs three distinct fidelity levels, each offering different trade-offs between computational cost and accuracy:</p>
+
+<h4 id="low-fidelity-models">Low Fidelity Models</h4>
+<ul>
+  <li><strong>Computational Cost</strong>: 0.05-0.1 seconds per evaluation</li>
+  <li><strong>Accuracy</strong>: ±15-20% typical error</li>
+  <li><strong>Applications</strong>: Initial design space exploration, rapid prototyping</li>
+  <li><strong>Aircraft Models</strong>: Simplified lift and drag equations, basic atmospheric models</li>
+  <li><strong>Spacecraft Models</strong>: Analytical orbital mechanics, simplified thermal models</li>
+</ul>
+
+<h4 id="medium-fidelity-models">Medium Fidelity Models</h4>
+<ul>
+  <li><strong>Computational Cost</strong>: 1-5 seconds per evaluation</li>
+  <li><strong>Accuracy</strong>: ±8-12% typical error</li>
+  <li><strong>Applications</strong>: Design refinement, constraint verification</li>
+  <li><strong>Enhanced Physics</strong>: Viscous effects, compressibility corrections, detailed geometry</li>
+</ul>
+
+<h4 id="high-fidelity-models">High Fidelity Models</h4>
+<ul>
+  <li><strong>Computational Cost</strong>: 15-25 seconds per evaluation</li>
+  <li><strong>Accuracy</strong>: ±3-5% typical error</li>
+  <li><strong>Applications</strong>: Final design validation, critical analysis</li>
+  <li><strong>Aircraft Models</strong>: CFD approximations, detailed Reynolds number effects</li>
+  <li><strong>Spacecraft Models</strong>: Orbital perturbations, detailed thermal analysis</li>
+</ul>
+
+<h3 id="adaptive-fidelity-switching">Adaptive Fidelity Switching</h3>
+
+<p>The system automatically selects the optimal fidelity level using multiple criteria:</p>
+
+<h4 id="decision-factors">Decision Factors</h4>
+<ol>
+  <li><strong>Convergence Status</strong>: Switch to higher fidelity as optimization converges</li>
+  <li><strong>Uncertainty Levels</strong>: Use high fidelity in regions with high uncertainty</li>
+  <li><strong>Computational Budget</strong>: Balance accuracy needs with available resources</li>
+  <li><strong>Expected Improvement</strong>: Prioritize high fidelity where improvement is likely</li>
+</ol>
+
+<h4 id="switching-strategies">Switching Strategies</h4>
+<ul>
+  <li><strong>Conservative</strong>: Prefer low fidelity, switch only when confident</li>
+  <li><strong>Aggressive</strong>: Use high fidelity early and frequently</li>
+  <li><strong>Balanced</strong>: Moderate approach balancing cost and accuracy</li>
+  <li><strong>Adaptive</strong>: Machine learning-based dynamic strategy selection</li>
+</ul>
+
+<h2 id="optimization-algorithms">Optimization Algorithms</h2>
+
+<h3 id="genetic-algorithm-ga">Genetic Algorithm (GA)</h3>
+
+<h4 id="algorithm-parameters">Algorithm Parameters</h4>
+<ul>
+  <li><strong>Population Size</strong>: 50-100 individuals</li>
+  <li><strong>Selection Method</strong>: Tournament selection with size 3</li>
+  <li><strong>Crossover Rate</strong>: 0.8 (blend crossover)</li>
+  <li><strong>Mutation Rate</strong>: 0.1 (Gaussian mutation)</li>
+  <li><strong>Elite Preservation</strong>: Top 10% carried forward</li>
+</ul>
+
+<h4 id="key-features">Key Features</h4>
+<ul>
+  <li>Multi-objective capability using NSGA-II framework</li>
+  <li>Adaptive parameter tuning based on convergence</li>
+  <li>Constraint handling through penalty functions</li>
+  <li>Parallel evaluation of population members</li>
+</ul>
+
+<h3 id="particle-swarm-optimization-pso">Particle Swarm Optimization (PSO)</h3>
+
+<h4 id="algorithm-parameters-1">Algorithm Parameters</h4>
+<ul>
+  <li><strong>Swarm Size</strong>: 30-50 particles</li>
+  <li><strong>Inertia Weight</strong>: 0.729 (linearly decreasing)</li>
+  <li><strong>Cognitive Parameter</strong>: 1.49445</li>
+  <li><strong>Social Parameter</strong>: 1.49445</li>
+  <li><strong>Velocity Clamping</strong>: ±20% of search space</li>
+</ul>
+
+<h4 id="key-features-1">Key Features</h4>
+<ul>
+  <li>Global and local best tracking</li>
+  <li>Adaptive velocity updates</li>
+  <li>Boundary constraint handling</li>
+  <li>Convergence acceleration techniques</li>
+</ul>
+
+<h3 id="bayesian-optimization">Bayesian Optimization</h3>
+
+<h4 id="algorithm-components">Algorithm Components</h4>
+<ul>
+  <li><strong>Surrogate Model</strong>: Gaussian Process with Matérn kernel</li>
+  <li><strong>Acquisition Function</strong>: Expected Improvement (EI)</li>
+  <li><strong>Initial Sampling</strong>: Latin Hypercube Design (10-20 points)</li>
+  <li><strong>Kernel Parameters</strong>: Automatic relevance determination</li>
+</ul>
+
+<h4 id="key-features-2">Key Features</h4>
+<ul>
+  <li>Efficient for expensive function evaluations</li>
+  <li>Built-in uncertainty quantification</li>
+  <li>Active learning for optimal sampling</li>
+  <li>Multiple acquisition function options (EI, UCB, PI)</li>
+</ul>
+
+<h2 id="uncertainty-quantification">Uncertainty Quantification</h2>
+
+<h3 id="sources-of-uncertainty">Sources of Uncertainty</h3>
+
+<h4 id="design-parameter-uncertainty">Design Parameter Uncertainty</h4>
+<ul>
+  <li>Manufacturing tolerances (±1-5%)</li>
+  <li>Material property variations</li>
+  <li>Assembly and installation errors</li>
+  <li>Operational wear and degradation</li>
+</ul>
+
+<h4 id="environmental-uncertainty">Environmental Uncertainty</h4>
+<ul>
+  <li>Atmospheric condition variations</li>
+  <li>Temperature and pressure fluctuations</li>
+  <li>Wind and turbulence effects</li>
+  <li>Space environment variations (radiation, debris)</li>
+</ul>
+
+<h4 id="model-uncertainty">Model Uncertainty</h4>
+<ul>
+  <li>Simplified physics assumptions</li>
+  <li>Numerical approximation errors</li>
+  <li>Calibration and validation uncertainties</li>
+  <li>Scale-up and extrapolation errors</li>
+</ul>
+
+<h3 id="uncertainty-analysis-methods">Uncertainty Analysis Methods</h3>
+
+<h4 id="monte-carlo-sampling">Monte Carlo Sampling</h4>
+<ul>
+  <li><strong>Sample Size</strong>: 100-1000 evaluations per design point</li>
+  <li><strong>Sampling Method</strong>: Latin Hypercube or Sobol sequences</li>
+  <li><strong>Distribution Types</strong>: Normal, uniform, lognormal, beta</li>
+  <li><strong>Output Statistics</strong>: Mean, variance, percentiles, confidence intervals</li>
+</ul>
+
+<h4 id="sensitivity-analysis">Sensitivity Analysis</h4>
+<ul>
+  <li><strong>Morris Screening</strong>: Efficient factor ranking method</li>
+  <li><strong>Sobol Indices</strong>: Variance-based sensitivity measures</li>
+  <li><strong>Parameter Ranking</strong>: Identify most influential variables</li>
+  <li><strong>Interaction Effects</strong>: Detect parameter coupling</li>
+</ul>
+
+<h4 id="polynomial-chaos-expansion">Polynomial Chaos Expansion</h4>
+<ul>
+  <li><strong>Basis Functions</strong>: Orthogonal polynomials matched to input distributions</li>
+  <li><strong>Expansion Order</strong>: 2nd-4th order depending on problem complexity</li>
+  <li><strong>Coefficient Estimation</strong>: Least squares regression</li>
+  <li><strong>Uncertainty Propagation</strong>: Analytical moments calculation</li>
+</ul>
+
+<h2 id="robust-optimization">Robust Optimization</h2>
+
+<h3 id="robustness-measures">Robustness Measures</h3>
+
+<h4 id="mean-standard-deviation">Mean-Standard Deviation</h4>
+<ul>
+  <li>Minimize: μ(f) - k×σ(f)</li>
+  <li>Balance between performance and reliability</li>
+  <li>Tunable risk parameter k (typically 1-3)</li>
+</ul>
+
+<h4 id="worst-case-optimization">Worst-Case Optimization</h4>
+<ul>
+  <li>Minimize: max(f) over uncertainty range</li>
+  <li>Conservative approach for safety-critical applications</li>
+  <li>Guarantees performance under all scenarios</li>
+</ul>
+
+<h4 id="conditional-value-at-risk-cvar">Conditional Value at Risk (CVaR)</h4>
+<ul>
+  <li>Minimize: Expected value of worst α% outcomes</li>
+  <li>Risk-aware optimization for financial applications</li>
+  <li>Flexible risk tolerance through α parameter</li>
+</ul>
+
+<h3 id="multi-objective-formulation">Multi-Objective Formulation</h3>
+
+<h4 id="objective-functions">Objective Functions</h4>
+<ul>
+  <li><strong>Performance</strong>: Maximize primary design metrics</li>
+  <li><strong>Robustness</strong>: Minimize sensitivity to uncertainties</li>
+  <li><strong>Reliability</strong>: Maximize constraint satisfaction probability</li>
+  <li><strong>Cost</strong>: Minimize computational or manufacturing cost</li>
+</ul>
+
+<h4 id="pareto-front-analysis">Pareto Front Analysis</h4>
+<ul>
+  <li>Trade-off visualization between objectives</li>
+  <li>Decision support for design selection</li>
+  <li>Sensitivity analysis of Pareto optimal solutions</li>
+</ul>
+
+<h2 id="aerospace-performance-models">Aerospace Performance Models</h2>
+
+<h3 id="aircraft-models">Aircraft Models</h3>
+
+<h4 id="aerodynamic-performance">Aerodynamic Performance</h4>
+<ul>
+  <li><strong>Lift Coefficient</strong>: Function of angle of attack, Mach number, Reynolds number</li>
+  <li><strong>Drag Coefficient</strong>: Parasitic drag + induced drag + compressibility effects</li>
+  <li><strong>Lift-to-Drag Ratio</strong>: Primary performance metric for efficiency</li>
+  <li><strong>Stall Characteristics</strong>: Critical angle of attack and stall speed</li>
+</ul>
+
+<h4 id="mission-performance">Mission Performance</h4>
+<ul>
+  <li><strong>Range</strong>: Breguet range equation with realistic fuel fractions</li>
+  <li><strong>Fuel Efficiency</strong>: Thrust-specific fuel consumption models</li>
+  <li><strong>Payload Capacity</strong>: Weight and balance constraints</li>
+  <li><strong>Takeoff/Landing</strong>: Field length requirements</li>
+</ul>
+
+<h3 id="spacecraft-models">Spacecraft Models</h3>
+
+<h4 id="orbital-mechanics">Orbital Mechanics</h4>
+<ul>
+  <li><strong>Delta-V Requirements</strong>: Hohmann transfers, plane changes, orbit maintenance</li>
+  <li><strong>Propellant Mass</strong>: Rocket equation with realistic specific impulse</li>
+  <li><strong>Mission Duration</strong>: Orbital decay, eclipse effects, aging</li>
+  <li><strong>Attitude Control</strong>: Reaction wheel sizing and fuel requirements</li>
+</ul>
+
+<h4 id="subsystem-performance">Subsystem Performance</h4>
+<ul>
+  <li><strong>Power Generation</strong>: Solar array efficiency, degradation, eclipse effects</li>
+  <li><strong>Thermal Management</strong>: Heat generation, dissipation, temperature control</li>
+  <li><strong>Communications</strong>: Link budgets, antenna sizing, power requirements</li>
+  <li><strong>Structural Design</strong>: Launch loads, thermal stress, fatigue life</li>
+</ul>
+
+<h2 id="implementation-details">Implementation Details</h2>
+
+<h3 id="software-architecture">Software Architecture</h3>
+
+<h4 id="object-oriented-design">Object-Oriented Design</h4>
+<ul>
+  <li>Base classes for simulations, optimizers, and uncertainty models</li>
+  <li>Polymorphic interfaces for algorithm interchangeability</li>
+  <li>Modular design for easy extension and customization</li>
+  <li>Comprehensive error handling and logging</li>
+</ul>
+
+<h4 id="performance-optimization">Performance Optimization</h4>
+<ul>
+  <li>Parallel evaluation of objective functions</li>
+  <li>Efficient memory management for large populations</li>
+  <li>Caching of expensive function evaluations</li>
+  <li>Adaptive convergence criteria</li>
+</ul>
+
+<h4 id="data-management">Data Management</h4>
+<ul>
+  <li>Automatic saving of optimization progress</li>
+  <li>Multiple export formats (CSV, Excel, HDF5)</li>
+  <li>Comprehensive metadata tracking</li>
+  <li>Result comparison and analysis tools</li>
+</ul>
+
+<h3 id="validation-and-verification">Validation and Verification</h3>
+
+<h4 id="benchmark-problems">Benchmark Problems</h4>
+<ul>
+  <li>Standard optimization test functions</li>
+  <li>Published aerospace design problems</li>
+  <li>Comparison with literature results</li>
+  <li>Cross-validation between algorithms</li>
+</ul>
+
+<h4 id="code-quality">Code Quality</h4>
+<ul>
+  <li>Unit testing for all major components</li>
+  <li>Integration testing of complete workflows</li>
+  <li>Performance profiling and optimization</li>
+  <li>Documentation and code review processes</li>
+</ul>
+
+<p>This methodology provides a comprehensive framework for aerospace optimization that balances accuracy, computational efficiency, and design robustness while providing detailed uncertainty analysis and decision support capabilities.</p>
+
+        </article>
+    </div>
+</div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adaptive Multi-Fidelity Aerospace Optimization</h3>
+                    <p>Advanced simulation-based optimization for aerospace systems using adaptive multi-fidelity models.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/methodology/">Methodology</a></li>
+                        <li><a href="/results/">Results</a></li>
+                        <li><a href="/technical/">Technical Details</a></li>
+                        <li><a href="/downloads/">Downloads</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/aerospace-optimization" target="_blank">GitHub Repository</a></li>
+                        <li><a href="/downloads/">Code & Data</a></li>
+                        <li><a href="/technical/">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Adaptive Multi-Fidelity Aerospace Optimization. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.site-nav');
+            nav.classList.toggle('mobile-open');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('.site-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('mobile-open');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

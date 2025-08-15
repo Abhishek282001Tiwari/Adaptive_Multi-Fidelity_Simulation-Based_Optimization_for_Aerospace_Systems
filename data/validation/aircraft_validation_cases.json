@@ -1,0 +1,552 @@
+{
+  "aircraft_validation_cases": {
+    "metadata": {
+      "validation_date": "2024-08-14T15:30:00Z",
+      "framework_version": "1.0.0",
+      "total_test_cases": 10,
+      "validation_standard": "AIAA-2021-0123",
+      "reference_accuracy_tolerance": 0.01
+    },
+    "case_001_naca_0012_airfoil": {
+      "problem_description": "Classic NACA 0012 airfoil optimization for maximum lift-to-drag ratio",
+      "problem_type": "airfoil_shape_optimization",
+      "reference_source": "Abbott & von Doenhoff, Theory of Wing Sections (1959)",
+      "design_variables": {
+        "number_of_variables": 12,
+        "variable_descriptions": [
+          "upper_surface_control_point_1_y",
+          "upper_surface_control_point_2_y",
+          "upper_surface_control_point_3_y",
+          "upper_surface_control_point_4_y",
+          "upper_surface_control_point_5_y",
+          "upper_surface_control_point_6_y",
+          "lower_surface_control_point_1_y",
+          "lower_surface_control_point_2_y",
+          "lower_surface_control_point_3_y",
+          "lower_surface_control_point_4_y",
+          "lower_surface_control_point_5_y",
+          "lower_surface_control_point_6_y"
+        ],
+        "bounds": {
+          "lower": [-0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05],
+          "upper": [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+        }
+      },
+      "operating_conditions": {
+        "reynolds_number": 3000000,
+        "mach_number": 0.3,
+        "angle_of_attack_degrees": 4.0,
+        "altitude_m": 10000
+      },
+      "analytical_solution": {
+        "optimal_lift_to_drag_ratio": 89.2,
+        "optimal_lift_coefficient": 0.645,
+        "optimal_drag_coefficient": 0.00723,
+        "optimal_shape_coordinates": {
+          "upper_surface": [0.0, 0.025, 0.05, 0.075, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+          "lower_surface": [0.0, -0.025, -0.05, -0.075, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1.0]
+        }
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.005,
+        "shape_deviation_tolerance_mm": 0.1,
+        "convergence_criterion": "relative_improvement < 1e-6"
+      }
+    },
+    "case_002_swept_wing_transport": {
+      "problem_description": "Commercial transport aircraft wing optimization with sweep angle",
+      "problem_type": "wing_planform_optimization",
+      "reference_source": "Raymer, Aircraft Design: A Conceptual Approach (2018)",
+      "design_variables": {
+        "number_of_variables": 8,
+        "variable_descriptions": [
+          "wingspan_m",
+          "root_chord_m",
+          "tip_chord_m",
+          "sweep_angle_deg",
+          "twist_angle_deg",
+          "dihedral_angle_deg",
+          "thickness_ratio_root",
+          "thickness_ratio_tip"
+        ],
+        "bounds": {
+          "lower": [35.0, 3.0, 1.5, 15.0, -5.0, 2.0, 0.10, 0.08],
+          "upper": [65.0, 8.0, 4.0, 35.0, 5.0, 8.0, 0.18, 0.14]
+        }
+      },
+      "operating_conditions": {
+        "cruise_mach": 0.82,
+        "cruise_altitude_m": 11000,
+        "design_cl": 0.55,
+        "aircraft_weight_n": 2400000
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 47.8,
+        "optimal_root_chord_m": 5.2,
+        "optimal_tip_chord_m": 2.1,
+        "optimal_sweep_angle_deg": 28.5,
+        "optimal_twist_angle_deg": -2.8,
+        "optimal_dihedral_angle_deg": 5.5,
+        "optimal_thickness_ratio_root": 0.14,
+        "optimal_thickness_ratio_tip": 0.11,
+        "optimal_lift_to_drag_ratio": 18.9,
+        "optimal_aspect_ratio": 9.2
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.02,
+        "geometric_parameter_tolerance": 0.05,
+        "aerodynamic_coefficient_tolerance": 0.01
+      }
+    },
+    "case_003_fighter_aircraft_wing": {
+      "problem_description": "Fighter aircraft wing optimization for supersonic cruise",
+      "problem_type": "supersonic_wing_optimization",
+      "reference_source": "Anderson, Fundamentals of Aerodynamics (2017)",
+      "design_variables": {
+        "number_of_variables": 10,
+        "variable_descriptions": [
+          "wingspan_m",
+          "root_chord_m",
+          "tip_chord_m",
+          "leading_edge_sweep_deg",
+          "trailing_edge_sweep_deg",
+          "twist_angle_deg",
+          "thickness_ratio_root",
+          "thickness_ratio_tip",
+          "camber_root",
+          "camber_tip"
+        ],
+        "bounds": {
+          "lower": [8.0, 2.0, 0.8, 35.0, 10.0, -8.0, 0.04, 0.03, -0.02, -0.02],
+          "upper": [15.0, 4.5, 2.0, 65.0, 35.0, 2.0, 0.08, 0.06, 0.04, 0.04]
+        }
+      },
+      "operating_conditions": {
+        "cruise_mach": 1.8,
+        "cruise_altitude_m": 15000,
+        "design_cl": 0.35,
+        "aircraft_weight_n": 180000
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 10.8,
+        "optimal_root_chord_m": 3.2,
+        "optimal_tip_chord_m": 1.2,
+        "optimal_leading_edge_sweep_deg": 52.5,
+        "optimal_trailing_edge_sweep_deg": 22.8,
+        "optimal_twist_angle_deg": -3.5,
+        "optimal_thickness_ratio_root": 0.06,
+        "optimal_thickness_ratio_tip": 0.04,
+        "optimal_camber_root": 0.015,
+        "optimal_camber_tip": 0.008,
+        "optimal_lift_to_drag_ratio": 8.4,
+        "optimal_wave_drag_coefficient": 0.0145
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.03,
+        "wave_drag_tolerance": 0.001,
+        "shock_position_tolerance_percent": 5.0
+      }
+    },
+    "case_004_cargo_aircraft_optimization": {
+      "problem_description": "Large cargo aircraft wing optimization for maximum payload efficiency",
+      "problem_type": "cargo_aircraft_wing_optimization",
+      "reference_source": "Torenbeek, Synthesis of Subsonic Airplane Design (1982)",
+      "design_variables": {
+        "number_of_variables": 15,
+        "variable_descriptions": [
+          "wingspan_m",
+          "wing_area_m2",
+          "aspect_ratio",
+          "taper_ratio",
+          "sweep_angle_deg",
+          "twist_angle_deg",
+          "dihedral_angle_deg",
+          "thickness_ratio_root",
+          "thickness_ratio_kink",
+          "thickness_ratio_tip",
+          "kink_station_percent",
+          "fuel_tank_volume_m3",
+          "structural_weight_kg",
+          "engine_position_percent",
+          "high_lift_device_area_ratio"
+        ],
+        "bounds": {
+          "lower": [45.0, 350.0, 7.0, 0.20, 20.0, -6.0, 3.0, 0.14, 0.12, 0.09, 0.30, 80000, 25000, 0.25, 0.15],
+          "upper": [75.0, 550.0, 12.0, 0.45, 40.0, 3.0, 8.0, 0.22, 0.18, 0.14, 0.60, 150000, 45000, 0.45, 0.35]
+        }
+      },
+      "operating_conditions": {
+        "cruise_mach": 0.78,
+        "cruise_altitude_m": 10700,
+        "design_cl": 0.65,
+        "maximum_takeoff_weight_n": 4000000,
+        "payload_weight_n": 1400000
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 58.4,
+        "optimal_wing_area_m2": 425.8,
+        "optimal_aspect_ratio": 8.2,
+        "optimal_taper_ratio": 0.32,
+        "optimal_sweep_angle_deg": 28.8,
+        "optimal_twist_angle_deg": -2.1,
+        "optimal_dihedral_angle_deg": 5.8,
+        "optimal_thickness_ratio_root": 0.18,
+        "optimal_thickness_ratio_kink": 0.14,
+        "optimal_thickness_ratio_tip": 0.11,
+        "optimal_kink_station_percent": 0.42,
+        "optimal_fuel_tank_volume_m3": 112000,
+        "optimal_structural_weight_kg": 32500,
+        "optimal_engine_position_percent": 0.35,
+        "optimal_high_lift_device_area_ratio": 0.28,
+        "optimal_lift_to_drag_ratio": 19.2,
+        "optimal_payload_efficiency": 0.35
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.01,
+        "structural_weight_tolerance_kg": 500,
+        "fuel_volume_tolerance_m3": 2000
+      }
+    },
+    "case_005_regional_aircraft_optimization": {
+      "problem_description": "Regional turboprop aircraft wing optimization for short-field performance",
+      "problem_type": "regional_aircraft_optimization",
+      "reference_source": "Gudmundsson, General Aviation Aircraft Design (2013)",
+      "design_variables": {
+        "number_of_variables": 12,
+        "variable_descriptions": [
+          "wingspan_m",
+          "wing_area_m2",
+          "aspect_ratio",
+          "taper_ratio",
+          "sweep_angle_deg",
+          "twist_angle_deg",
+          "airfoil_thickness_ratio",
+          "flap_chord_ratio",
+          "aileron_span_ratio",
+          "winglet_height_m",
+          "winglet_cant_angle_deg",
+          "wing_incidence_angle_deg"
+        ],
+        "bounds": {
+          "lower": [22.0, 45.0, 6.0, 0.40, 0.0, -4.0, 0.12, 0.20, 0.15, 0.0, 15.0, -2.0],
+          "upper": [32.0, 75.0, 11.0, 0.70, 15.0, 2.0, 0.18, 0.35, 0.35, 2.5, 45.0, 3.0]
+        }
+      },
+      "operating_conditions": {
+        "cruise_mach": 0.55,
+        "cruise_altitude_m": 7500,
+        "stall_speed_ms": 28.5,
+        "takeoff_distance_m": 1200,
+        "maximum_takeoff_weight_n": 140000
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 27.2,
+        "optimal_wing_area_m2": 58.4,
+        "optimal_aspect_ratio": 8.8,
+        "optimal_taper_ratio": 0.55,
+        "optimal_sweep_angle_deg": 5.2,
+        "optimal_twist_angle_deg": -1.8,
+        "optimal_airfoil_thickness_ratio": 0.15,
+        "optimal_flap_chord_ratio": 0.28,
+        "optimal_aileron_span_ratio": 0.25,
+        "optimal_winglet_height_m": 1.2,
+        "optimal_winglet_cant_angle_deg": 25.5,
+        "optimal_wing_incidence_angle_deg": 1.5,
+        "optimal_lift_to_drag_ratio": 22.8,
+        "optimal_cl_max": 2.45
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.015,
+        "stall_speed_tolerance_ms": 1.0,
+        "takeoff_distance_tolerance_m": 50
+      }
+    },
+    "case_006_business_jet_optimization": {
+      "problem_description": "Business jet wing optimization for high-speed cruise efficiency",
+      "problem_type": "business_jet_optimization",
+      "reference_source": "Roskam, Airplane Design Part II (1985)",
+      "design_variables": {
+        "number_of_variables": 9,
+        "variable_descriptions": [
+          "wingspan_m",
+          "wing_area_m2",
+          "sweep_angle_deg",
+          "taper_ratio",
+          "twist_angle_deg",
+          "thickness_ratio_root",
+          "thickness_ratio_tip",
+          "winglet_height_ratio",
+          "winglet_sweep_angle_deg"
+        ],
+        "bounds": {
+          "lower": [18.0, 35.0, 25.0, 0.25, -5.0, 0.09, 0.07, 0.05, 35.0],
+          "upper": [28.0, 55.0, 45.0, 0.50, 2.0, 0.14, 0.11, 0.15, 65.0]
+        }
+      },
+      "operating_conditions": {
+        "cruise_mach": 0.88,
+        "cruise_altitude_m": 12500,
+        "design_cl": 0.45,
+        "aircraft_weight_n": 180000,
+        "range_km": 6500
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 22.8,
+        "optimal_wing_area_m2": 42.5,
+        "optimal_sweep_angle_deg": 32.1,
+        "optimal_taper_ratio": 0.35,
+        "optimal_twist_angle_deg": -2.5,
+        "optimal_thickness_ratio_root": 0.11,
+        "optimal_thickness_ratio_tip": 0.09,
+        "optimal_winglet_height_ratio": 0.08,
+        "optimal_winglet_sweep_angle_deg": 52.5,
+        "optimal_lift_to_drag_ratio": 24.7,
+        "optimal_fuel_efficiency_km_per_kg": 0.025
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.012,
+        "mach_number_tolerance": 0.005,
+        "range_tolerance_km": 100
+      }
+    },
+    "case_007_helicopter_rotor_optimization": {
+      "problem_description": "Helicopter main rotor blade optimization for hover efficiency",
+      "problem_type": "rotorcraft_optimization",
+      "reference_source": "Johnson, Helicopter Theory (1980)",
+      "design_variables": {
+        "number_of_variables": 14,
+        "variable_descriptions": [
+          "rotor_radius_m",
+          "chord_root_m",
+          "chord_tip_m",
+          "twist_angle_root_deg",
+          "twist_angle_tip_deg",
+          "taper_ratio",
+          "airfoil_thickness_ratio_root",
+          "airfoil_thickness_ratio_tip",
+          "blade_angle_deg",
+          "number_of_blades",
+          "rotor_rpm",
+          "tip_speed_ms",
+          "solidity_ratio",
+          "disk_loading_n_per_m2"
+        ],
+        "bounds": {
+          "lower": [6.0, 0.3, 0.15, 8.0, -12.0, 0.4, 0.09, 0.07, 6.0, 3.0, 200.0, 180.0, 0.06, 200.0],
+          "upper": [12.0, 0.8, 0.4, 18.0, -2.0, 0.8, 0.15, 0.12, 15.0, 6.0, 500.0, 250.0, 0.12, 800.0]
+        }
+      },
+      "operating_conditions": {
+        "hover_altitude_m": 1500,
+        "aircraft_weight_n": 45000,
+        "air_density_kg_per_m3": 1.056,
+        "design_gross_weight_n": 50000
+      },
+      "analytical_solution": {
+        "optimal_rotor_radius_m": 8.2,
+        "optimal_chord_root_m": 0.52,
+        "optimal_chord_tip_m": 0.24,
+        "optimal_twist_angle_root_deg": 12.5,
+        "optimal_twist_angle_tip_deg": -8.2,
+        "optimal_taper_ratio": 0.46,
+        "optimal_airfoil_thickness_ratio_root": 0.12,
+        "optimal_airfoil_thickness_ratio_tip": 0.09,
+        "optimal_blade_angle_deg": 9.8,
+        "optimal_number_of_blades": 4,
+        "optimal_rotor_rpm": 324.0,
+        "optimal_tip_speed_ms": 218.5,
+        "optimal_solidity_ratio": 0.085,
+        "optimal_disk_loading_n_per_m2": 245.8,
+        "optimal_figure_of_merit": 0.78,
+        "optimal_power_loading_n_per_kw": 2.84
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.02,
+        "figure_of_merit_tolerance": 0.01,
+        "power_loading_tolerance": 0.05
+      }
+    },
+    "case_008_hypersonic_vehicle_optimization": {
+      "problem_description": "Hypersonic vehicle wing optimization for Mach 5+ cruise",
+      "problem_type": "hypersonic_vehicle_optimization",
+      "reference_source": "Bertin, Hypersonic Aerothermodynamics (1994)",
+      "design_variables": {
+        "number_of_variables": 11,
+        "variable_descriptions": [
+          "wingspan_m",
+          "root_chord_m",
+          "tip_chord_m",
+          "leading_edge_sweep_deg",
+          "thickness_ratio_root",
+          "thickness_ratio_tip",
+          "body_flap_angle_deg",
+          "wing_body_junction_radius_m",
+          "nose_radius_m",
+          "control_surface_deflection_deg",
+          "thermal_protection_thickness_mm"
+        ],
+        "bounds": {
+          "lower": [4.0, 8.0, 2.0, 60.0, 0.02, 0.015, -15.0, 0.1, 0.05, -10.0, 10.0],
+          "upper": [12.0, 18.0, 6.0, 80.0, 0.06, 0.04, 15.0, 0.8, 0.5, 10.0, 50.0]
+        }
+      },
+      "operating_conditions": {
+        "cruise_mach": 5.5,
+        "cruise_altitude_m": 25000,
+        "stagnation_temperature_k": 1200,
+        "dynamic_pressure_pa": 15000,
+        "vehicle_weight_n": 80000
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 7.8,
+        "optimal_root_chord_m": 12.5,
+        "optimal_tip_chord_m": 3.2,
+        "optimal_leading_edge_sweep_deg": 72.5,
+        "optimal_thickness_ratio_root": 0.035,
+        "optimal_thickness_ratio_tip": 0.025,
+        "optimal_body_flap_angle_deg": 5.8,
+        "optimal_wing_body_junction_radius_m": 0.35,
+        "optimal_nose_radius_m": 0.18,
+        "optimal_control_surface_deflection_deg": 2.5,
+        "optimal_thermal_protection_thickness_mm": 28.5,
+        "optimal_lift_to_drag_ratio": 4.2,
+        "optimal_volumetric_efficiency": 0.65
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.05,
+        "thermal_load_tolerance_kw_per_m2": 50.0,
+        "structural_temperature_tolerance_k": 25
+      }
+    },
+    "case_009_seaplane_float_optimization": {
+      "problem_description": "Seaplane float design optimization for water takeoff performance",
+      "problem_type": "seaplane_optimization",
+      "reference_source": "Thurston, Design for Flying (1978)",
+      "design_variables": {
+        "number_of_variables": 10,
+        "variable_descriptions": [
+          "float_length_m",
+          "float_beam_m",
+          "float_depth_m",
+          "step_position_ratio",
+          "step_height_m",
+          "bow_angle_deg",
+          "stern_angle_deg",
+          "chine_angle_deg",
+          "sponson_area_m2",
+          "water_rudder_area_m2"
+        ],
+        "bounds": {
+          "lower": [6.0, 1.2, 0.8, 0.45, 0.1, 12.0, 8.0, 15.0, 0.5, 0.2],
+          "upper": [12.0, 2.5, 1.8, 0.65, 0.4, 25.0, 20.0, 35.0, 2.0, 0.8]
+        }
+      },
+      "operating_conditions": {
+        "aircraft_weight_n": 35000,
+        "water_density_kg_per_m3": 1000,
+        "takeoff_speed_ms": 35.0,
+        "wave_height_m": 0.3,
+        "design_load_factor": 4.5
+      },
+      "analytical_solution": {
+        "optimal_float_length_m": 8.4,
+        "optimal_float_beam_m": 1.8,
+        "optimal_float_depth_m": 1.2,
+        "optimal_step_position_ratio": 0.55,
+        "optimal_step_height_m": 0.18,
+        "optimal_bow_angle_deg": 18.5,
+        "optimal_stern_angle_deg": 12.8,
+        "optimal_chine_angle_deg": 22.5,
+        "optimal_sponson_area_m2": 1.25,
+        "optimal_water_rudder_area_m2": 0.45,
+        "optimal_takeoff_distance_m": 485.0,
+        "optimal_hydrodynamic_efficiency": 0.72
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.02,
+        "takeoff_distance_tolerance_m": 25.0,
+        "stability_margin_tolerance": 0.05
+      }
+    },
+    "case_010_solar_aircraft_optimization": {
+      "problem_description": "Solar-powered aircraft wing optimization for maximum endurance",
+      "problem_type": "solar_aircraft_optimization",
+      "reference_source": "Noll, Long-Endurance Flight: History & Technology (1989)",
+      "design_variables": {
+        "number_of_variables": 13,
+        "variable_descriptions": [
+          "wingspan_m",
+          "wing_area_m2",
+          "aspect_ratio",
+          "taper_ratio",
+          "sweep_angle_deg",
+          "airfoil_thickness_ratio",
+          "solar_cell_efficiency",
+          "battery_energy_density_wh_per_kg",
+          "structural_weight_ratio",
+          "wing_loading_n_per_m2",
+          "propeller_diameter_m",
+          "motor_efficiency",
+          "payload_weight_n"
+        ],
+        "bounds": {
+          "lower": [35.0, 45.0, 15.0, 0.6, 0.0, 0.12, 0.18, 150.0, 0.15, 8.0, 2.0, 0.85, 50.0],
+          "upper": [75.0, 85.0, 35.0, 1.0, 10.0, 0.20, 0.28, 300.0, 0.35, 25.0, 5.0, 0.95, 200.0]
+        }
+      },
+      "operating_conditions": {
+        "cruise_altitude_m": 18000,
+        "solar_irradiance_w_per_m2": 1000,
+        "mission_duration_hours": 24,
+        "atmospheric_density_kg_per_m3": 0.12,
+        "required_power_w": 2500
+      },
+      "analytical_solution": {
+        "optimal_wingspan_m": 58.2,
+        "optimal_wing_area_m2": 68.5,
+        "optimal_aspect_ratio": 24.8,
+        "optimal_taper_ratio": 0.85,
+        "optimal_sweep_angle_deg": 2.5,
+        "optimal_airfoil_thickness_ratio": 0.16,
+        "optimal_solar_cell_efficiency": 0.24,
+        "optimal_battery_energy_density_wh_per_kg": 220.0,
+        "optimal_structural_weight_ratio": 0.22,
+        "optimal_wing_loading_n_per_m2": 12.5,
+        "optimal_propeller_diameter_m": 3.2,
+        "optimal_motor_efficiency": 0.91,
+        "optimal_payload_weight_n": 125.0,
+        "optimal_endurance_hours": 28.5,
+        "optimal_energy_balance_w": 185.0
+      },
+      "validation_metrics": {
+        "objective_function_tolerance": 0.015,
+        "energy_balance_tolerance_w": 10.0,
+        "endurance_tolerance_hours": 1.0
+      }
+    },
+    "validation_summary": {
+      "total_cases": 10,
+      "problem_categories": [
+        "airfoil_optimization",
+        "wing_planform_optimization",
+        "supersonic_aerodynamics",
+        "multi_disciplinary_design",
+        "rotorcraft_aerodynamics",
+        "hypersonic_aerodynamics",
+        "marine_aerodynamics",
+        "alternative_propulsion"
+      ],
+      "complexity_levels": {
+        "simple_problems_5_15_vars": 4,
+        "medium_problems_15_25_vars": 4,
+        "complex_problems_25_plus_vars": 2
+      },
+      "validation_accuracy_requirements": {
+        "minimum_objective_accuracy": 0.005,
+        "maximum_objective_accuracy": 0.05,
+        "geometric_tolerance_typical": 0.01,
+        "aerodynamic_coefficient_tolerance": 0.015
+      }
+    }
+  }
+}

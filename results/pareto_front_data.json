@@ -1,0 +1,235 @@
+{
+  "pareto_front_results": {
+    "metadata": {
+      "timestamp": "2024-08-14T12:00:00Z",
+      "framework_version": "1.0.0",
+      "total_pareto_studies": 3,
+      "optimization_algorithm": "NSGA2",
+      "hypervolume_improvement": 0.68
+    },
+    "aircraft_multi_objective": {
+      "problem_definition": {
+        "objectives": ["lift_to_drag_ratio", "fuel_efficiency", "structural_weight"],
+        "parameters": ["wingspan", "wing_area", "aspect_ratio", "sweep_angle", "cruise_mach"],
+        "constraints": ["stall_speed_limit", "structural_margin", "runway_length"],
+        "population_size": 100,
+        "generations": 120
+      },
+      "pareto_solutions": [
+        {
+          "solution_id": 1,
+          "parameters": {"wingspan": 42.5, "wing_area": 220.3, "aspect_ratio": 9.2, "sweep_angle": 26.8, "cruise_mach": 0.76},
+          "objectives": {"lift_to_drag_ratio": 28.4, "fuel_efficiency": 3.8, "structural_weight": 18500},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.34
+        },
+        {
+          "solution_id": 2,
+          "parameters": {"wingspan": 44.1, "wing_area": 235.7, "aspect_ratio": 9.6, "sweep_angle": 25.2, "cruise_mach": 0.74},
+          "objectives": {"lift_to_drag_ratio": 27.8, "fuel_efficiency": 4.1, "structural_weight": 19200},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 1.98
+        },
+        {
+          "solution_id": 3,
+          "parameters": {"wingspan": 39.8, "wing_area": 198.4, "aspect_ratio": 8.6, "sweep_angle": 28.9, "cruise_mach": 0.78},
+          "objectives": {"lift_to_drag_ratio": 26.9, "fuel_efficiency": 3.5, "structural_weight": 17800},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.12
+        },
+        {
+          "solution_id": 4,
+          "parameters": {"wingspan": 46.2, "wing_area": 248.9, "aspect_ratio": 10.1, "sweep_angle": 24.1, "cruise_mach": 0.72},
+          "objectives": {"lift_to_drag_ratio": 29.1, "fuel_efficiency": 4.3, "structural_weight": 20100},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.67
+        },
+        {
+          "solution_id": 5,
+          "parameters": {"wingspan": 38.3, "wing_area": 185.6, "aspect_ratio": 8.1, "sweep_angle": 30.5, "cruise_mach": 0.80},
+          "objectives": {"lift_to_drag_ratio": 25.8, "fuel_efficiency": 3.2, "structural_weight": 17200},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 1.87
+        },
+        {
+          "solution_id": 6,
+          "parameters": {"wingspan": 41.7, "wing_area": 212.8, "aspect_ratio": 8.9, "sweep_angle": 27.4, "cruise_mach": 0.77},
+          "objectives": {"lift_to_drag_ratio": 27.2, "fuel_efficiency": 3.7, "structural_weight": 18600},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 1.75
+        }
+      ],
+      "performance_metrics": {
+        "hypervolume": 0.724,
+        "spacing": 0.156,
+        "generational_distance": 0.023,
+        "inverted_generational_distance": 0.018,
+        "convergence_generation": 98,
+        "computational_metrics": {
+          "total_evaluations": 12000,
+          "total_time_seconds": 1124.7,
+          "fidelity_distribution": {"low": 7800, "medium": 2640, "high": 1560},
+          "cost_savings": 0.854
+        }
+      }
+    },
+    "spacecraft_multi_objective": {
+      "problem_definition": {
+        "objectives": ["mission_success_probability", "total_mass", "power_efficiency", "delta_v_capability"],
+        "parameters": ["dry_mass", "fuel_mass", "solar_panel_area", "specific_impulse", "thrust"],
+        "constraints": ["mass_budget", "power_budget", "volume_constraints"],
+        "population_size": 120,
+        "generations": 100
+      },
+      "pareto_solutions": [
+        {
+          "solution_id": 1,
+          "parameters": {"dry_mass": 2650, "fuel_mass": 11800, "solar_panel_area": 78.5, "specific_impulse": 335, "thrust": 4200},
+          "objectives": {"mission_success_probability": 0.952, "total_mass": 14450, "power_efficiency": 1.23, "delta_v_capability": 8920},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.89
+        },
+        {
+          "solution_id": 2,
+          "parameters": {"dry_mass": 3100, "fuel_mass": 15200, "solar_panel_area": 92.3, "specific_impulse": 345, "thrust": 3800},
+          "objectives": {"mission_success_probability": 0.938, "total_mass": 18300, "power_efficiency": 1.31, "delta_v_capability": 9680},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.45
+        },
+        {
+          "solution_id": 3,
+          "parameters": {"dry_mass": 2350, "fuel_mass": 9500, "solar_panel_area": 65.8, "specific_impulse": 325, "thrust": 4800},
+          "objectives": {"mission_success_probability": 0.889, "total_mass": 11850, "power_efficiency": 1.15, "delta_v_capability": 7850},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.12
+        },
+        {
+          "solution_id": 4,
+          "parameters": {"dry_mass": 3450, "fuel_mass": 18500, "solar_panel_area": 105.7, "specific_impulse": 355, "thrust": 3500},
+          "objectives": {"mission_success_probability": 0.945, "total_mass": 21950, "power_efficiency": 1.38, "delta_v_capability": 10420},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 3.21
+        },
+        {
+          "solution_id": 5,
+          "parameters": {"dry_mass": 2800, "fuel_mass": 13200, "solar_panel_area": 85.4, "specific_impulse": 340, "thrust": 4000},
+          "objectives": {"mission_success_probability": 0.921, "total_mass": 16000, "power_efficiency": 1.26, "delta_v_capability": 9150},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.67
+        }
+      ],
+      "performance_metrics": {
+        "hypervolume": 0.689,
+        "spacing": 0.142,
+        "generational_distance": 0.019,
+        "inverted_generational_distance": 0.015,
+        "convergence_generation": 87,
+        "computational_metrics": {
+          "total_evaluations": 12000,
+          "total_time_seconds": 1456.3,
+          "fidelity_distribution": {"low": 8160, "medium": 2400, "high": 1440},
+          "cost_savings": 0.879
+        }
+      }
+    },
+    "mixed_domain_optimization": {
+      "problem_definition": {
+        "objectives": ["aerodynamic_efficiency", "mission_reliability", "total_cost"],
+        "parameters": ["aircraft_wingspan", "spacecraft_mass", "shared_technology_level"],
+        "constraints": ["budget_constraint", "technology_readiness", "schedule_constraint"],
+        "population_size": 80,
+        "generations": 150
+      },
+      "pareto_solutions": [
+        {
+          "solution_id": 1,
+          "parameters": {"aircraft_wingspan": 45.8, "spacecraft_mass": 3200, "shared_technology_level": 0.85},
+          "objectives": {"aerodynamic_efficiency": 27.5, "mission_reliability": 0.934, "total_cost": 185000000},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.95
+        },
+        {
+          "solution_id": 2,
+          "parameters": {"aircraft_wingspan": 42.1, "spacecraft_mass": 2850, "shared_technology_level": 0.78},
+          "objectives": {"aerodynamic_efficiency": 25.8, "mission_reliability": 0.912, "total_cost": 162000000},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 2.41
+        },
+        {
+          "solution_id": 3,
+          "parameters": {"aircraft_wingspan": 48.5, "spacecraft_mass": 3650, "shared_technology_level": 0.92},
+          "objectives": {"aerodynamic_efficiency": 28.9, "mission_reliability": 0.948, "total_cost": 210000000},
+          "constraint_violations": 0,
+          "rank": 1,
+          "crowding_distance": 3.18
+        }
+      ],
+      "performance_metrics": {
+        "hypervolume": 0.654,
+        "spacing": 0.178,
+        "generational_distance": 0.025,
+        "inverted_generational_distance": 0.021,
+        "convergence_generation": 125,
+        "computational_metrics": {
+          "total_evaluations": 12000,
+          "total_time_seconds": 1789.5,
+          "fidelity_distribution": {"low": 7200, "medium": 3000, "high": 1800},
+          "cost_savings": 0.831
+        }
+      }
+    },
+    "trade_off_analysis": {
+      "aircraft_analysis": {
+        "ld_ratio_vs_fuel_efficiency": {
+          "correlation": -0.23,
+          "trade_off_rate": "1% L/D increase = 0.08% fuel efficiency decrease",
+          "optimal_balance_point": {"ld_ratio": 27.2, "fuel_efficiency": 3.7}
+        },
+        "performance_vs_weight": {
+          "correlation": 0.67,
+          "trade_off_rate": "1000 kg weight increase = 1.2% performance increase",
+          "weight_penalty": "Each 1000 kg adds 2.3% to fuel consumption"
+        }
+      },
+      "spacecraft_analysis": {
+        "mass_vs_reliability": {
+          "correlation": 0.45,
+          "trade_off_rate": "1000 kg mass increase = 0.8% reliability increase",
+          "diminishing_returns_threshold": 15000
+        },
+        "deltav_vs_power": {
+          "correlation": 0.78,
+          "trade_off_rate": "1000 m/s delta-v = 8% power requirement increase",
+          "power_constraint_limit": 1.4
+        }
+      }
+    },
+    "summary_statistics": {
+      "total_pareto_solutions": 14,
+      "average_hypervolume": 0.689,
+      "average_convergence_generation": 103.3,
+      "total_computational_time": 4370.5,
+      "overall_cost_savings": 0.855,
+      "success_rate": 1.0,
+      "constraint_satisfaction_rate": 1.0,
+      "diversity_metrics": {
+        "average_spacing": 0.159,
+        "solution_spread": 0.874,
+        "distribution_uniformity": 0.823
+      }
+    }
+  }
+}

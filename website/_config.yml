@@ -1,0 +1,63 @@
+title: "Adaptive Multi-Fidelity Aerospace Optimization"
+description: "Advanced simulation-based optimization system for aerospace applications using adaptive multi-fidelity models"
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Navigation
+header_pages:
+  - index.md
+  - about.md
+  - methodology.md
+  - results.md
+  - technical.md
+  - downloads.md
+
+# Collections
+collections:
+  results:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+      type: "results"
+    values:
+      layout: "result"
+
+# Site settings
+author: "Research Team"
+email: "contact@aerospace-optimization.org"
+github_username: "aerospace-optimization"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
