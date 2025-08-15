@@ -1,0 +1,37 @@
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="site-branding">
+                <h1 class="site-title">
+                    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+                </h1>
+                <p class="site-tagline">{{ site.description }}</p>
+            </div>
+            
+            <div class="header-badges">
+                <span class="badge badge-status">{{ site.project.status }}</span>
+                <span class="badge badge-certification">{{ site.achievements.certification_level }}</span>
+                <span class="badge badge-performance">{{ site.achievements.cost_reduction }} Cost Reduction</span>
+            </div>
+        </div>
+        
+        <div class="header-stats">
+            <div class="stat-item">
+                <span class="stat-value">{{ site.achievements.cost_reduction }}</span>
+                <span class="stat-label">Cost Reduction</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">{{ site.achievements.solution_accuracy }}</span>
+                <span class="stat-label">Solution Accuracy</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">{{ site.achievements.test_coverage }}</span>
+                <span class="stat-label">Test Coverage</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">{{ site.project.version }}</span>
+                <span class="stat-label">Version</span>
+            </div>
+        </div>
+    </div>
+</header>

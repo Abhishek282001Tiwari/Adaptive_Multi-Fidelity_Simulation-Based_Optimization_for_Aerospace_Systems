@@ -1,0 +1,19 @@
+current directory: /Users/abhishektiwari/Adaptive_Multi-Fidelity_Simulation-Based_Optimization_for_Aerospace_Systems/docs/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+/Users/abhishektiwari/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/abhishektiwari/Adaptive_Multi-Fidelity_Simulation-Based_Optimization_for_Aerospace_Systems/docs/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250815-21769-rptlsp sitelibdir\=./.gem.20250815-21769-rptlsp clean
+
+current directory: /Users/abhishektiwari/Adaptive_Multi-Fidelity_Simulation-Based_Optimization_for_Aerospace_Systems/docs/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250815-21769-rptlsp sitelibdir\=./.gem.20250815-21769-rptlsp
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/abhishektiwari/Adaptive_Multi-Fidelity_Simulation-Based_Optimization_for_Aerospace_Systems/docs/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250815-21769-rptlsp sitelibdir\=./.gem.20250815-21769-rptlsp install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20250815-21769-rptlsp/racc
+
+current directory: /Users/abhishektiwari/Adaptive_Multi-Fidelity_Simulation-Based_Optimization_for_Aerospace_Systems/docs/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250815-21769-rptlsp sitelibdir\=./.gem.20250815-21769-rptlsp clean

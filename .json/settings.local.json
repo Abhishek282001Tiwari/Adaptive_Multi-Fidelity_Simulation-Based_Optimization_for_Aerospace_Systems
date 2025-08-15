@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/usr/bin/python3:*)",
+      "Bash(cp:*)",
+      "Bash(bundle:*)",
+      "Bash(curl:*)",
+      "Bash(find:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,59 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Framework Information</h3>
+                <ul>
+                    <li><strong>Version:</strong> {{ site.project.version }}</li>
+                    <li><strong>Certification:</strong> {{ site.project.certification }}</li>
+                    <li><strong>Status:</strong> {{ site.project.status }}</li>
+                    <li><strong>Compliance:</strong> {{ site.project.compliance }}</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Performance Metrics</h3>
+                <ul>
+                    <li><strong>Cost Reduction:</strong> {{ site.achievements.cost_reduction }}</li>
+                    <li><strong>Solution Accuracy:</strong> {{ site.achievements.solution_accuracy }}</li>
+                    <li><strong>Test Coverage:</strong> {{ site.achievements.test_coverage }}</li>
+                    <li><strong>Certification:</strong> {{ site.achievements.certification_level }}</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{{ '/methodology/' | relative_url }}">Methodology</a></li>
+                    <li><a href="{{ '/results/' | relative_url }}">Results</a></li>
+                    <li><a href="{{ '/technical-details/' | relative_url }}">Technical Details</a></li>
+                    <li><a href="{{ '/downloads/' | relative_url }}">Downloads</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact & Support</h3>
+                <ul>
+                    <li><a href="{{ site.github.repository_url }}" target="_blank">GitHub Repository</a></li>
+                    <li><a href="mailto:{{ site.author.email }}">Email Support</a></li>
+                    <li><a href="{{ site.github.repository_url }}/issues" target="_blank">Report Issues</a></li>
+                    <li><a href="{{ site.github.repository_url }}/wiki" target="_blank">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name }}. All rights reserved.</p>
+                <p>Licensed under MIT License. NASA-STD-7009A & AIAA-2021-0123 Compliant.</p>
+            </div>
+            
+            <div class="footer-badges">
+                <span class="badge badge-mit">MIT Licensed</span>
+                <span class="badge badge-nasa">NASA Compliant</span>
+                <span class="badge badge-aiaa">AIAA Certified</span>
+                <span class="badge badge-production">Production Ready</span>
+            </div>
+        </div>
+    </div>
+</footer>

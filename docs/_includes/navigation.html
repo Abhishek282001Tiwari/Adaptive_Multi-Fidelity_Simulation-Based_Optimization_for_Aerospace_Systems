@@ -1,0 +1,23 @@
+<nav class="site-navigation">
+    <div class="container">
+        <ul class="nav-menu">
+            {% for item in site.navigation %}
+            <li class="nav-item">
+                <a href="{{ item.url | relative_url }}" 
+                   class="nav-link{% if page.url == item.url %} active{% endif %}">
+                    {{ item.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <div class="nav-actions">
+            <a href="{{ site.github.repository_url }}" class="btn btn-primary" target="_blank">
+                View on GitHub
+            </a>
+            <a href="{{ '/downloads/' | relative_url }}" class="btn btn-secondary">
+                Download
+            </a>
+        </div>
+    </div>
+</nav>
